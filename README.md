@@ -13,7 +13,7 @@ nvm + execa = nvexeca.
 promise interface, cross-platform support, local binaries, interleaved output,
 [and more](https://github.com/sindresorhus/execa#why).
 
-nvexeca is a thin wrapper around Execa that runs any file or command using any
+nvexeca is a thin wrapper around Execa to run any file or command using any
 Node.js version.
 
 Unlike [`nvm exec`](https://github.com/nvm-sh/nvm/blob/master/README.md#usage)
@@ -44,10 +44,10 @@ const nvexeca = require('nvexeca')
 const { childProcess, versionRange, version } = await nvexeca('8', 'node', [
   '--version',
 ])
-console.log(`Node ${versionRange} (${version})`) // Node 8 (8.16.1)
+console.log(`Node ${versionRange} (${version})`) // Node 8 (8.16.2)
 const { exitCode, stdout, stderr } = await childProcess
 console.log(`Exit code: ${exitCode}`) // 0
-console.log(stdout) // v8.16.1
+console.log(stdout) // v8.16.2
 ```
 
 # Install
@@ -66,11 +66,11 @@ any Node version (providing it is compatible with it).
 _versionRange_: `string`<br> _command_: `string`<br>_args_: `string[]?`<br>
 _options_: `object?`<br>_Return value_: `Promise<object>`
 
-`command` is the file or command to execute. `args` are the arguments passed to
-it.
-
 `versionRange` can be any [version range](https://github.com/npm/node-semver)
 such as `12`, `12.6.0` or `<12`.
+
+`command` is the file or command to execute. `args` are the arguments passed to
+it.
 
 `command` must be compatible with the specific Node `versionRange`. For example
 `npm` is
@@ -106,7 +106,7 @@ download.
 
 _Type_: `boolean`<br>_Default_: `false`
 
-Whether to show a progress spinner when the Node binary is downloading.
+Whether to show a progress bar when the Node binary is downloading.
 
 #### mirror
 
