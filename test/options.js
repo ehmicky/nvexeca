@@ -19,7 +19,7 @@ each(
     ['invalid_version', 'node'],
   ],
   ({ title }, [versionRange, command, args, opts]) => {
-    test(`Invalid arguments | programmatic ${title}`, async t => {
+    test(`Invalid arguments | ${title}`, async t => {
       await t.throwsAsync(nvexeca(versionRange, command, args, opts))
     })
   },
