@@ -6,21 +6,25 @@
 [![Twitter](https://img.shields.io/badge/%E2%80%8B-twitter-4cc61e.svg?logo=twitter)](https://twitter.com/intent/follow?screen_name=ehmicky)
 [![Medium](https://img.shields.io/badge/%E2%80%8B-medium-4cc61e.svg?logo=medium)](https://medium.com/@ehmicky)
 
-Run any command on specific Node.js versions.
+nvm + execa = nvexeca.
+
+[Execa](https://github.com/sindresorhus/execa) improves
+[child processes](https://nodejs.org/api/child_process.html) execution with a
+promise interface, cross-platform support, local binaries, interleaved output,
+[and more](https://github.com/sindresorhus/execa#why).
+
+nvexeca is a thin wrapper around Execa that allows running any file or command
+using any Node.js version.
 
 Unlike [`nvm exec`](https://github.com/nvm-sh/nvm/blob/master/README.md#usage)
 it:
 
-- can run [multiple Node.js versions](#examples-multiple-versions) at once
-- can be run [programmatically](#examples-programmatic)
-- is [10 times faster](#benchmarks)
+- is run programmatically
 - does not need a separate installation step for each Node version
 - can run the major release's latest minor/patch version automatically
-- works on Windows. No need to run as Administrator.
 - does not require Bash
-- is installed as a Node module (as opposed to a
-  [Bash installation script](https://github.com/nvm-sh/nvm/blob/master/README.md#installation-and-update)
-  downloaded with `curl`)
+- is installed as a Node module
+- works on Windows. No need to run as Administrator.
 
 `nvexeca` executes a **single file or command**. It does not change the `node`
 nor `npm` global binaries. To run a specific Node.js version for an **entire
@@ -57,105 +61,7 @@ any Node version (providing it is compatible with it).
 
 # Usage
 
-## CLI
-
-```bash
-nve [OPTIONS...] VERSION... [COMMAND] [ARGS...]
-```
-
-This is exactly the same as:
-
-```bash
-COMMAND [ARGS...]
-```
-
-But using specific Node `VERSION`. Several `VERSION` can be specified at once.
-
-`VERSION` can be any [version range](https://github.com/npm/node-semver) such as
-`12`, `12.6.0` or `<12`.
-
-`COMMAND` must be compatible with the specific Node `VERSION`. For example `npm`
-is [only compatible with Node `>=6`](https://github.com/npm/cli#important).
-
-Both global and local binaries can be executed.
-
-The first time `nve` is run with a new `VERSION`, the Node binary is downloaded
-under the hood. This initially takes few seconds. However subsequent runs are
-[almost instantaneous](#benchmarks).
-
-`COMMAND` can be omitted in order to cache that initial download without
-executing any commands.
-
-## Options
-
-### --continue
-
-_Alias_: `-c`<br> _Type_: `boolean`<br>_Default_: `false`
-
-By default, when running multiple Node versions and one of those versions fails,
-the others are aborted. This option disables this.
-
-### --parallel
-
-_Alias_: `-p`<br> _Type_: `boolean`<br>_Default_: `false`
-
-When running multiple Node versions, run all of them at the same time. This is
-faster. However this does not work if the command:
-
-- requires some interactive CLI input (for example using a prompt)
-- is not concurrency-safe
-
-### --shell
-
-_Alias_: `-s`<br> _Type_: `boolean`<br>_Default_: `false`
-
-When using shell-specific chaining or structures such as `&&` or `||`, `nve`
-should be repeated.
-
-```
-nve 8 npm run build && nve 8 npm test
-```
-
-Although [not recommended](https://github.com/sindresorhus/execa#shell),
-`--shell` can achieve the same result by running the command inside a shell.
-
-```
-nve --shell 8 "npm run build && npm test"
-```
-
-Please note that shell-specific features such as globbing, environment variables
-or `$VARIABLE` expansion work even without `--shell`.
-
-### --progress
-
-_Type_: `boolean`<br>_Default_: `true`
-
-Whether to show a progress spinner when the Node binary is downloading.
-
-### --mirror
-
-_Alias_: `-m`<br>_Type_: `string`<br>_Default_: `https://nodejs.org/dist`
-
-Base URL to retrieve Node binaries. Can be overridden (for example
-`https://npm.taobao.org/mirrors/node`).
-
-The following environment variables can also be used: `NODE_MIRROR`,
-`NVM_NODEJS_ORG_MIRROR`, `N_NODE_MIRROR` or `NODIST_NODE_MIRROR`.
-
-## Native modules
-
-If your code is using native modules, `nve` works providing:
-
-- they are built with [N-API](https://nodejs.org/api/n-api.html)
-- the target Node.js version is `>=8.12.0` (since N-API was not available or
-  stable before that)
-
-Otherwise the following error message is shown:
-`Error: The module was compiled against a different Node.js version`.
-
-## Programmatic
-
-### nvexeca(versionRange, command, args?, options?)
+## nvexeca(versionRange, command, args?, options?)
 
 _versionRange_: `string`<br> _command_: `string`<br>_args_: `string[]?`<br>
 _options_: `object?`<br>_Return value_: `Promise<object>`
@@ -163,7 +69,20 @@ _options_: `object?`<br>_Return value_: `Promise<object>`
 `command` is the file or command to execute. `args` are the arguments passed to
 it.
 
-#### Options
+`versionRange` can be any [version range](https://github.com/npm/node-semver)
+such as `12`, `12.6.0` or `<12`.
+
+`command` must be compatible with the specific Node `versionRange`. For example
+`npm` is
+[only compatible with Node `>=6`](https://github.com/npm/cli#important).
+
+Both global and local binaries can be executed.
+
+The first time `nvexeca` is run with a new version, the Node binary is
+downloaded under the hood. This initially takes few seconds. However subsequent
+runs are almost instantaneous.
+
+### Options
 
 _Type_: `object`
 
@@ -176,26 +95,34 @@ is always `true`.
 
 The following options are also available.
 
-##### dry
+#### dry
 
 _Type_: `boolean`<br>_Default_: `false`
 
 Do not execute the command. This can be used to cache the initial Node.js binary
 download
 
-##### progress
+#### progress
 
-Like the [`--progress` CLI option](#--progress). Defaults to `false`.
+_Type_: `boolean`<br>_Default_: `true`
 
-##### mirror
+Whether to show a progress spinner when the Node binary is downloading.
 
-Like the [`--mirror` CLI option](#--mirror).
+#### mirror
 
-#### Return value
+_Type_: `string`<br>_Default_: `https://nodejs.org/dist`
+
+Base URL to retrieve Node binaries. Can be overridden (for example
+`https://npm.taobao.org/mirrors/node`).
+
+The following environment variables can also be used: `NODE_MIRROR`,
+`NVM_NODEJS_ORG_MIRROR`, `N_NODE_MIRROR` or `NODIST_NODE_MIRROR`.
+
+### Return value
 
 _Type_: `Promise<object>`
 
-##### childProcess
+#### childProcess
 
 _Type_:
 [`execaResult?`](https://github.com/sindresorhus/execa#execafile-arguments-options)
@@ -206,37 +133,48 @@ It is also a `Promise` resolving or rejecting with a
 
 This is `undefined` when the [`dry`](#dry) option is `true`.
 
-##### versionRange
+#### versionRange
 
 _Type_: `string`
 
 Node.js version passed as input, such as `"v10"`.
 
-##### version
+#### version
 
 _Type_: `string`
 
 Normalized Node.js version. For example if `"v10"` was passed as input,
 `version` will be `"10.17.0"`.
 
-##### command
+#### command
 
 _Type_: `string`
 
 File or command that was executed.
 
-##### args
+#### args
 
 _Type_: `string[]`
 
 Arguments that were passed to the `command`.
 
-##### execaOptions
+#### execaOptions
 
 _Type_: `object`
 
 [Options](https://github.com/sindresorhus/execa#options) that were passed to
 [Execa](https://github.com/sindresorhus/execa).
+
+## Native modules
+
+If your code is using native modules, `nve` works providing:
+
+- they are built with [N-API](https://nodejs.org/api/n-api.html)
+- the target Node.js version is `>=8.12.0` (since N-API was not available or
+  stable before that)
+
+Otherwise the following error message is shown:
+`Error: The module was compiled against a different Node.js version`.
 
 # See also
 
