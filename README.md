@@ -13,8 +13,8 @@ nvm + execa = nvexeca.
 promise interface, cross-platform support, local binaries, interleaved output,
 [and more](https://github.com/sindresorhus/execa#why).
 
-nvexeca is a thin wrapper around Execa that allows running any file or command
-using any Node.js version.
+nvexeca is a thin wrapper around Execa that runs any file or command using any
+Node.js version.
 
 Unlike [`nvm exec`](https://github.com/nvm-sh/nvm/blob/master/README.md#usage)
 it:
@@ -100,11 +100,11 @@ The following options are also available.
 _Type_: `boolean`<br>_Default_: `false`
 
 Do not execute the command. This can be used to cache the initial Node.js binary
-download
+download.
 
 #### progress
 
-_Type_: `boolean`<br>_Default_: `true`
+_Type_: `boolean`<br>_Default_: `false`
 
 Whether to show a progress spinner when the Node binary is downloading.
 
@@ -167,7 +167,7 @@ _Type_: `object`
 
 ## Native modules
 
-If your code is using native modules, `nve` works providing:
+If your code is using native modules, `nvexeca` works providing:
 
 - they are built with [N-API](https://nodejs.org/api/n-api.html)
 - the target Node.js version is `>=8.12.0` (since N-API was not available or
@@ -196,7 +196,7 @@ If you found a bug or would like a new feature, _don't hesitate_ to
 [submit an issue on GitHub](../../issues).
 
 For other questions, feel free to
-[chat with us on Gitter](https://gitter.im/ehmicky/nve).
+[chat with us on Gitter](https://gitter.im/ehmicky/nvexeca).
 
 Everyone is welcome regardless of personal background. We enforce a
 [Code of conduct](CODE_OF_CONDUCT.md) in order to promote a positive and
@@ -213,16 +213,13 @@ button (pencil icon) and suggest a correction.
 If you would like to help us fix a bug or add a new feature, please check our
 [guidelines](CONTRIBUTING.md). Pull requests are welcome!
 
-Thanks go to our wonderful contributors:
+<!-- Thanks go to our wonderful contributors: -->
 
 <!-- ALL-CONTRIBUTORS-LIST:START -->
 <!-- prettier-ignore -->
 <table>
   <tr>
-    <td align="center"><a href="https://twitter.com/ehmicky"><img src="https://avatars2.githubusercontent.com/u/8136211?v=4" width="100px;" alt="ehmicky"/><br /><sub><b>ehmicky</b></sub></a><br /><a href="https://github.com/ehmicky/nve/commits?author=ehmicky" title="Code">💻</a> <a href="#design-ehmicky" title="Design">🎨</a> <a href="#ideas-ehmicky" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/ehmicky/nve/commits?author=ehmicky" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://scottwarren.dev"><img src="https://avatars2.githubusercontent.com/u/2718494?v=4" width="100px;" alt="Scott Warren"/><br /><sub><b>Scott Warren</b></sub></a><br /><a href="#question-scottwarren" title="Answering Questions">💬</a></td>
-    <td align="center"><a href="https://tunnckoCore.com"><img src="https://avatars3.githubusercontent.com/u/5038030?v=4" width="100px;" alt="Charlike Mike Reagent"/><br /><sub><b>Charlike Mike Reagent</b></sub></a><br /><a href="#question-tunnckoCore" title="Answering Questions">💬</a> <a href="#ideas-tunnckoCore" title="Ideas, Planning, & Feedback">🤔</a></td>
-    <td align="center"><a href="https://github.com/Hongarc"><img src="https://avatars1.githubusercontent.com/u/19208123?v=4" width="100px;" alt="Hongarc"/><br /><sub><b>Hongarc</b></sub></a><br /><a href="#ideas-Hongarc" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://twitter.com/ehmicky"><img src="https://avatars2.githubusercontent.com/u/8136211?v=4" width="100px;" alt="ehmicky"/><br /><sub><b>ehmicky</b></sub></a><br /><a href="https://github.com/ehmicky/nvexeca/commits?author=ehmicky" title="Code">💻</a> <a href="#design-ehmicky" title="Design">🎨</a> <a href="#ideas-ehmicky" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/ehmicky/nvexeca/commits?author=ehmicky" title="Documentation">📖</a></td>
   </tr>
 </table>
 
