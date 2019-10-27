@@ -20,10 +20,7 @@ const FORK_FILE = normalize(`${__dirname}/helpers/fork.js`)
 // See https://github.com/istanbuljs/spawn-wrap/issues/108
 if (platform !== 'win32' || !isCi) {
   each(
-    [
-      ['node', '--version'],
-      ['node', FORK_FILE, 'node', '--version'],
-    ],
+    [['node', '--version'], ['node', FORK_FILE, 'node', '--version']],
     [{}, { [pathKey()]: undefined }],
     ({ title }, args, env) => {
       test(`Works with child processes | ${title}`, async t => {

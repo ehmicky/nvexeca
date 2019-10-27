@@ -22,9 +22,9 @@ it:
   [Bash installation script](https://github.com/nvm-sh/nvm/blob/master/README.md#installation-and-update)
   downloaded with `curl`)
 
-`nvexeca` executes a **single file or command**. It does not change the `node` nor
-`npm` global binaries. To run a specific Node.js version for an **entire project
-or shell session**, please use [`nvm`](https://github.com/nvm-sh/nvm),
+`nvexeca` executes a **single file or command**. It does not change the `node`
+nor `npm` global binaries. To run a specific Node.js version for an **entire
+project or shell session**, please use [`nvm`](https://github.com/nvm-sh/nvm),
 [`nvm-windows`](https://github.com/coreybutler/nvm-windows),
 [`n`](https://github.com/tj/n) or [`nvs`](https://github.com/jasongin/nvs)
 instead.
@@ -52,8 +52,8 @@ console.log(stdout) // v8.16.1
 npm install nvexeca
 ```
 
-`node >=8.12.0` must be installed. However the command run by `nvexeca` can
-use any Node version (providing it is compatible with it).
+`node >=8.12.0` must be installed. However the command run by `nvexeca` can use
+any Node version (providing it is compatible with it).
 
 # Usage
 
