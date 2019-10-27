@@ -3,6 +3,7 @@ import { normalize } from 'path'
 
 import test from 'ava'
 import { each } from 'test-each'
+import execa from 'execa'
 import isCi from 'is-ci'
 import pathKey from 'path-key'
 
@@ -11,6 +12,7 @@ import nvexeca from '../src/main.js'
 import { HELPER_VERSION, TEST_VERSION } from './helpers/versions.js'
 
 const FORK_FILE = normalize(`${__dirname}/helpers/fork.js`)
+const DEEP_FILE = normalize(`${__dirname}/helpers/deep.js`)
 
 // Those tests do not work in Travis CI with Windows.
 // However they work on Windows locally.
@@ -19,7 +21,11 @@ const FORK_FILE = normalize(`${__dirname}/helpers/fork.js`)
 // See https://github.com/istanbuljs/spawn-wrap/issues/108
 if (platform !== 'win32' || !isCi) {
   each(
-    [['node', '--version'], ['node', FORK_FILE, 'node', '--version']],
+    [
+      ['node', '--version'],
+      ['node', DEEP_FILE],
+      ['node', FORK_FILE, 'node', '--version'],
+    ],
     [{}, { [pathKey()]: undefined }],
     ({ title }, args, env) => {
       test(`Works with child processes | ${title}`, async t => {
@@ -48,6 +54,18 @@ if (platform !== 'win32' || !isCi) {
     t.is(stdout, `v${HELPER_VERSION}`)
   })
 }
+
+// `nyc nve ...` does not work because `nyc` monkey patches
+// `child_process.spawn()` and forces `node` to be `process.execPath` (the
+// `node` that spawned `nyc`, i.e. the global `node`) by modifying the `$PATH`
+// environment variable.
+// This should be fixed with nyc@15
+// See https://github.com/istanbuljs/spawn-wrap/issues/108
+test('Works with nyc as parent with node command', async t => {
+  const { stdout } = await execa.command(`nyc --silent -- node ${DEEP_FILE}`)
+
+  t.is(stdout, `v${HELPER_VERSION}`)
+})
 
 test('Does not change process.execPath', async t => {
   // eslint-disable-next-line no-restricted-globals, node/prefer-global/process
