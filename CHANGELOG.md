@@ -1,3 +1,10 @@
+# 1.5.1
+
+## Bug fixes
+
+- Executing `npm`, `yarn` and `pnpm` was not working properly, for example when
+  doing global installs (`npm i -g ...`).
+
 # 1.5.0
 
 ## Features
