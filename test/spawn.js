@@ -35,21 +35,21 @@ test('Can fire global binaries', async t => {
   const { childProcess } = await nvexeca(HELPER_VERSION, 'npm', ['--version'])
   const { stdout } = await childProcess
 
-  t.true(stdout !== '')
+  t.not(stdout, '')
 })
 
 test('Can fire local binaries', async t => {
   const { childProcess } = await runWithoutPath({})
   const { stdout } = await childProcess
 
-  t.true(stdout !== '')
+  t.not(stdout, '')
 })
 
 test('Can use preferLocal: true (noop)', async t => {
   const { childProcess } = await runWithoutPath({ preferLocal: true })
   const { stdout } = await childProcess
 
-  t.true(stdout !== '')
+  t.not(stdout, '')
 })
 
 // Those tests do not work in Travis CI with Windows.
