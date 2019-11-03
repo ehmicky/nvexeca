@@ -53,6 +53,7 @@
     "execa": "^3.2.0",
     "filter-obj": "^2.0.1",
     "get-node": "^6.4.0",
+    "global-dirs": "^2.0.1",
     "is-plain-obj": "^2.0.0",
     "jest-validate": "^24.9.0"
   },
@@ -63,7 +64,8 @@
     "husky": "^3.0.9",
     "is-ci": "^2.0.0",
     "path-key": "^3.1.0",
-    "test-each": "^1.8.0"
+    "test-each": "^1.8.0",
+    "yarn": "^1.19.1"
   },
   "engines": {
     "node": ">=8.12.0"

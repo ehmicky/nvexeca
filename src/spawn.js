@@ -1,5 +1,7 @@
 import { platform } from 'process'
 
+import { getPrefix } from './prefix.js'
+
 export const getCommand = function(command, nodePath, { shell }) {
   // The following is not relevant in shell mode:
   //  - shell spawning creates a nested child process
@@ -37,6 +39,12 @@ export const getCommand = function(command, nodePath, { shell }) {
 //  - binaries work, even on Windows
 // We use `execa` `execPath` for this.
 // This option requires `preferLocal: true`
-export const getExecaOptions = function(execaOptions, nodePath) {
-  return { ...execaOptions, execPath: nodePath, preferLocal: true }
+export const getExecaOptions = function(
+  command,
+  nodePath,
+  { env = {}, ...execaOptions },
+) {
+  const PREFIX = getPrefix(command)
+  const envA = { ...env, PREFIX }
+  return { ...execaOptions, env: envA, execPath: nodePath, preferLocal: true }
 }

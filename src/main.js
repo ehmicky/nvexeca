@@ -18,8 +18,8 @@ const nvexeca = async function(versionRange, command, args, opts) {
     mirror,
   })
 
+  const execaOptionsA = getExecaOptions(command, nodePath, execaOptions)
   const commandA = getCommand(command, nodePath, execaOptions)
-  const execaOptionsA = getExecaOptions(execaOptions, nodePath)
 
   const childProcess = startProcess({
     command: commandA,
