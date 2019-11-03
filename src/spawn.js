@@ -45,6 +45,6 @@ export const getExecaOptions = function(
   { env = {}, ...execaOptions },
 ) {
   const PREFIX = getPrefix(command)
-  const envA = { ...env, PREFIX }
+  const envA = { PREFIX, ...env }
   return { ...execaOptions, env: envA, execPath: nodePath, preferLocal: true }
 }

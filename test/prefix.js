@@ -41,3 +41,15 @@ test('Works with child processes', async t => {
     platform === 'win32' ? dirname(execPath) : dirname(dirname(execPath))
   t.is(stdout, prefix)
 })
+
+test('Can be overriden with PREFIX environment variable', async t => {
+  const { childProcess } = await nvexeca(
+    HELPER_VERSION,
+    'node',
+    ['-p', 'process.env.PREFIX'],
+    { env: { PREFIX: 'test' } },
+  )
+  const { stdout } = await childProcess
+
+  t.is(stdout, 'test')
+})
