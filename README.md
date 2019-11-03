@@ -81,10 +81,6 @@ it.
 
 Both global and local binaries can be executed.
 
-The first time `nvexeca` is run with a new version, the Node binary is
-downloaded under the hood. This initially takes few seconds. However subsequent
-runs are almost instantaneous.
-
 ### Options
 
 _Type_: `object`
@@ -167,6 +163,12 @@ _Type_: `object`
 
 [Options](https://github.com/sindresorhus/execa#options) that were passed to
 [Execa](https://github.com/sindresorhus/execa).
+
+## Initial download
+
+The first time `nvexeca` is run with a new `VERSION`, the Node binary is
+downloaded under the hood. This initially takes few seconds. However subsequent
+runs are almost instantaneous.
 
 ## Native modules
 
