@@ -52,7 +52,7 @@
     "core-js": "^3.4.0",
     "execa": "^3.2.0",
     "filter-obj": "^2.0.1",
-    "get-node": "^6.3.0",
+    "get-node": "^6.4.0",
     "is-plain-obj": "^2.0.0",
     "jest-validate": "^24.9.0"
   },
