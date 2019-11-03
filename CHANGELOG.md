@@ -1,3 +1,9 @@
+# 1.1.2
+
+## Dependencies
+
+- Reduce the number of dependencies
+
 # 1.1.1
 
 ## Dependencies
