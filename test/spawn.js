@@ -69,7 +69,7 @@ if (platform !== 'win32' || !isCi) {
 // This does not work with nyc on MacOS and Windows
 // This might be fixed with nyc@15
 // See https://github.com/istanbuljs/spawn-wrap/issues/108
-if (platform === 'linux') {
+if (platform === 'linux' || !isCi) {
   test('Can run in shell mode', async t => {
     const { childProcess } = await nvexeca(
       TEST_VERSION,
