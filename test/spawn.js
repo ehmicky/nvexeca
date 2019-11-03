@@ -66,13 +66,11 @@ if (platform !== 'win32' || !isCi) {
   })
 }
 
-// This does not work with nyc on MacOS
+// This does not work with nyc on MacOS and Windows
 // This might be fixed with nyc@15
 // See https://github.com/istanbuljs/spawn-wrap/issues/108
-if (platform !== 'darwin' || !isCi) {
-  // This needs to run serially because it crashes Windows memory otherwise.
-  // I don't know this happens.
-  test.serial('Can run in shell mode', async t => {
+if (platform === 'linux') {
+  test('Can run in shell mode', async t => {
     const { childProcess } = await nvexeca(
       TEST_VERSION,
       'node --version && node --version',
