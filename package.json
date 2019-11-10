@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "core-js": "^3.4.0",
-    "execa": "^3.2.0",
+    "execa": "^3.3.0",
     "filter-obj": "^2.0.1",
     "get-node": "^6.4.0",
     "global-dirs": "^2.0.1",
