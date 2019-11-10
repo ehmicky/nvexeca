@@ -1,3 +1,9 @@
+# 1.5.3
+
+## Bug fixes
+
+- Fix executing binaries by specifying their file paths on Windows
+
 # 1.5.2
 
 ## Bug fixes
