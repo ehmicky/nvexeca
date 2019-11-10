@@ -49,7 +49,7 @@
     "test": "test"
   },
   "dependencies": {
-    "core-js": "^3.4.0",
+    "core-js": "^3.4.1",
     "execa": "^3.3.0",
     "filter-obj": "^2.0.1",
     "get-node": "^6.4.0",
