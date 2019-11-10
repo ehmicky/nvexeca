@@ -1,5 +1,3 @@
-import { platform } from 'process'
-
 import { npm } from 'global-dirs'
 
 export const getCommand = function(command, nodePath, { shell }) {
@@ -19,14 +17,6 @@ export const getCommand = function(command, nodePath, { shell }) {
   // This is also slightly faster as it does not require any `$PATH` lookup.
   if (command === 'node') {
     return nodePath
-  }
-
-  // On Windows, global binaries (except `node` itself) have two files:
-  //   - `file`: a Node.js file which is not executable (but can be run with
-  //     `node`)
-  //   - `file.cmd`: the actual executable file
-  if (platform === 'win32') {
-    return `${command}.cmd`
   }
 
   return command
