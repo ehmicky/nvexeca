@@ -1,3 +1,9 @@
+# 1.5.2
+
+## Bug fixes
+
+- Fix executing `yarn`.
+
 # 1.5.1
 
 ## Bug fixes

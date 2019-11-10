@@ -1,6 +1,6 @@
 import { platform } from 'process'
 
-import { getPrefix } from './prefix.js'
+import { npm } from 'global-dirs'
 
 export const getCommand = function(command, nodePath, { shell }) {
   // The following is not relevant in shell mode:
@@ -42,9 +42,21 @@ export const getCommand = function(command, nodePath, { shell }) {
 export const getExecaOptions = function(
   command,
   nodePath,
-  { env = {}, ...execaOptions },
+  { env, ...execaOptions },
 ) {
-  const PREFIX = getPrefix(command)
-  const envA = { PREFIX, ...env }
+  const envA = addPrefix(env)
   return { ...execaOptions, env: envA, execPath: nodePath, preferLocal: true }
+}
+
+// npm, yarn and similar tools rely on the assumption that process.execPath
+// is located in the same place as global binaries. This is not the case with
+// nve so we need to override that logic by specifying the NPM_CONFIG_PREFIX
+// environment variable which is used by those tools for that purpose.
+// We use that variable since it has lower priority than yarn configuration
+// files (unlike PREFIX).
+// We use `global-dirs` which provides the best value for `NPM_CONFIG_PREFIX`
+// since it takes into account npmrc, npm_config_prefix, environment variables,
+// etc.
+export const addPrefix = function(env) {
+  return { NPM_CONFIG_PREFIX: npm.prefix, ...env }
 }

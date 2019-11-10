@@ -4,6 +4,7 @@ import test from 'ava'
 import { each } from 'test-each'
 import pathKey from 'path-key'
 import isCi from 'is-ci'
+import execa from 'execa'
 
 import nvexeca from '../src/main.js'
 
@@ -93,3 +94,15 @@ const runWithoutPath = function(execaOptions) {
     ...execaOptions,
   })
 }
+
+test('Works with npm', async t => {
+  const { childProcess: nveChildProcess } = await nvexeca(
+    HELPER_VERSION,
+    'npm',
+    ['-g', 'bin'],
+  )
+  const { stdout: nveStdout } = await nveChildProcess
+  const { stdout } = await execa('npm', ['-g', 'bin'])
+
+  t.is(nveStdout, stdout)
+})
