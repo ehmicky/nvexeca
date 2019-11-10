@@ -2,6 +2,7 @@ import getNode from 'get-node'
 import execa from 'execa'
 
 import { getOpts } from './options.js'
+import { copyBinaries } from './copy/main.js'
 import { getCommand, getExecaOptions } from './spawn.js'
 
 // Forwards command to another node instance of a specific `versionRange`
@@ -13,18 +14,18 @@ const nvexeca = async function(versionRange, command, args, opts) {
     execaOptions,
   } = getOpts({ versionRange, command, args, opts })
 
-  const { path: nodePath, version } = await getNode(versionRange, {
-    progress,
-    mirror,
-  })
+  const [{ path: nodePath, version }, execaOptionsA] = await Promise.all([
+    getNode(versionRange, { progress, mirror }),
+    copyBinaries(execaOptions),
+  ])
 
   const commandA = getCommand(nodePath, command)
-  const execaOptionsA = getExecaOptions(nodePath, execaOptions)
+  const execaOptionsB = getExecaOptions(nodePath, execaOptionsA)
 
   const childProcess = startProcess({
     command: commandA,
     args: argsA,
-    execaOptions: execaOptionsA,
+    execaOptions: execaOptionsB,
     dry,
   })
 
@@ -34,7 +35,7 @@ const nvexeca = async function(versionRange, command, args, opts) {
     versionRange,
     command: commandA,
     args: argsA,
-    execaOptions: execaOptionsA,
+    execaOptions: execaOptionsB,
   }
 }
 

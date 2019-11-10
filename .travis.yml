@@ -37,3 +37,11 @@ notifications:
   email: false
 # We do not use `cache: npm` because downloading and uploading the cache
 # actually takes more time than it saves during `npm ci`.
+
+# nyc does not work because it monkey patches `child_process.spawn()` and forces
+# `node` to be `process.execPath` (the `node` that spawned `nyc`, i.e. the
+# global `node`) by modifying the `$PATH` environment variable.
+# TODO: This should be fixed with nyc@15
+# See https://github.com/istanbuljs/spawn-wrap/issues/108
+env:
+  COVERAGE: 'false'
