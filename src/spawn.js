@@ -1,20 +1,13 @@
 import { npm } from 'global-dirs'
 
-export const getCommand = function(command, nodePath, { shell }) {
-  // The following is not relevant in shell mode:
-  //  - shell spawning creates a nested child process
-  //  - `file.cmd` is not necessary when run through `cmd.exe`
-  if (shell) {
-    return command
-  }
-
-  // Some libraries like `spawn-wrap` (used by `nyc`) monkey patch
-  // `child_process.spawn()` to modify `$PATH` and prepend their own `node`
-  // wrapper. We fix it by using the `node` absolute path instead of relying on
-  // `$PATH`. Note that this does not work:
-  //  - with nested child processes
-  //  - with binaries
-  // This is also slightly faster as it does not require any `$PATH` lookup.
+// Some libraries like `spawn-wrap` (used by `nyc`) monkey patch
+// `child_process.spawn()` to modify `$PATH` and prepend their own `node`
+// wrapper. We fix it by using the `node` absolute path instead of relying on
+// `$PATH`. Note that this does not work:
+//  - with nested child processes
+//  - with binaries
+// This is also slightly faster as it does not require any `$PATH` lookup.
+export const getCommand = function(nodePath, command) {
   if (command === 'node') {
     return nodePath
   }
@@ -29,11 +22,7 @@ export const getCommand = function(command, nodePath, { shell }) {
 //  - binaries work, even on Windows
 // We use `execa` `execPath` for this.
 // This option requires `preferLocal: true`
-export const getExecaOptions = function(
-  command,
-  nodePath,
-  { env, ...execaOptions },
-) {
+export const getExecaOptions = function(nodePath, { env, ...execaOptions }) {
   const envA = addPrefix(env)
   return { ...execaOptions, env: envA, execPath: nodePath, preferLocal: true }
 }
