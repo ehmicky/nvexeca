@@ -66,8 +66,11 @@ To use this as a CLI instead, please check
 
 ## nvexeca(versionRange, command, args?, options?)
 
-_versionRange_: `string`<br> _command_: `string`<br>_args_: `string[]?`<br>
-_options_: `object?`<br>_Return value_: `Promise<object>`
+_versionRange_: `string`\
+_command_: `string`\
+_args_: `string[]?`\
+_options_: `object?`\
+_Return value_: `Promise<object>`
 
 `versionRange` can be any [version range](https://github.com/npm/node-semver)
 such as `12`, `12.6.0` or `<12`.
@@ -96,20 +99,23 @@ The following options are also available.
 
 #### dry
 
-_Type_: `boolean`<br>_Default_: `false`
+_Type_: `boolean`\
+_Default_: `false`
 
 Do not execute the command. This can be used to cache the initial Node.js binary
 download.
 
 #### progress
 
-_Type_: `boolean`<br>_Default_: `false`
+_Type_: `boolean`\
+_Default_: `false`
 
 Whether to show a progress bar when the Node binary is downloading.
 
 #### mirror
 
-_Type_: `string`<br>_Default_: `https://nodejs.org/dist`
+_Type_: `string`\
+_Default_: `https://nodejs.org/dist`
 
 Base URL to retrieve Node binaries. Can be overridden (for example
 `https://npm.taobao.org/mirrors/node`).
