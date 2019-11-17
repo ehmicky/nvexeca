@@ -6,10 +6,10 @@ case `uname` in
 esac
 
 if [ -x "$basedir/python" ]; then
-  "$basedir/python"  "$basedir/modules/not_node/main.js" "$@"
+  "$basedir/python"  "$basedir/node_modules/not_node/main.js" "$@"
   ret=$?
 else
-  python  "$basedir/modules/not_node/main.js" "$@"
+  python  "$basedir/node_modules/not_node/main.js" "$@"
   ret=$?
 fi
 exit $ret

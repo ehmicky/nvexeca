@@ -9,6 +9,9 @@ const pReadFile = promisify(readFile)
 // We need to slightly modify the binaries so that their file paths take into
 // account the new location. Moving the binaries should make the
 // `if exists ./node.exe` always fail, so this does not need to be changed.
+// Note that global binaries use `cmd-shim` (https://github.com/npm/cmd-shim) to
+// produce the shim files. But `npm` and `npx` global binaries shim files are
+// slightly different (https://github.com/npm/cli/blob/latest/bin/npm)
 export const getContent = async function({
   type,
   srcBinDir,
@@ -26,34 +29,26 @@ export const getContent = async function({
 // However the RegExp below works regardless of those changes.
 const getCmdContent = function({ distBinDir, srcBinDir, content }) {
   const relPath = relative(distBinDir, srcBinDir).replace(SLASH_REGEXP, '\\')
-  return content.replace(CMD_REGEXP, `$1${relPath}\\$3`)
+  return content.replace(CMD_REGEXP, `\\${relPath}$&`)
 }
 
-const CMD_REGEXP = /("(%dp0%|%~dp0)\\)([^"]+" %\*)/gu
+const SLASH_REGEXP = /\//gu
+const CMD_REGEXP = /\\node_modules/gu
 
 // The Bash file changes in `cmd-shim@3.0.0` (shipped with Node `10.17.0`).
 // However the RegExp below works regardless of those changes.
-const getBashContent = function({ distBinDir, srcBinDir, content }) {
+// This also works with the Powershell file, which was added by `cmd-shim@3.0.0`
+// (shipped with Node `10.17.0`).
+const getShellContent = function({ distBinDir, srcBinDir, content }) {
   const relPath = relative(distBinDir, srcBinDir).replace(BACKSLASH_REGEXP, '/')
-  return content.replace(BASH_REGEXP, `$1${relPath}/$2`)
+  return content.replace(SHELL_REGEXP, `/${relPath}$&`)
 }
 
-const BASH_REGEXP = /("\$basedir\/)([^"]+" "\$@")/gu
-
-// The Powershell file only exists since `cmd-shim@3.0.0` (shipped with Node
-// `10.17.0`).
-const getPs1Content = function({ distBinDir, srcBinDir, content }) {
-  const relPath = relative(distBinDir, srcBinDir).replace(BACKSLASH_REGEXP, '/')
-  return content.replace(PS1_REGEXP, `$1${relPath}/$2`)
-}
-
-const PS1_REGEXP = /("\$basedir\/)([^"]+" \$args)/gu
-
-const SLASH_REGEXP = /\//gu
 const BACKSLASH_REGEXP = /\\/gu
+const SHELL_REGEXP = /\/node_modules/gu
 
 const CONTENTS = {
   cmd: getCmdContent,
-  bash: getBashContent,
-  ps1: getPs1Content,
+  bash: getShellContent,
+  ps1: getShellContent,
 }

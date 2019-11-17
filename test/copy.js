@@ -14,7 +14,7 @@ const FIXTURES_DIR = join(__dirname, 'helpers', 'fixtures')
 const PATH = pathKey()
 
 if (platform !== 'win32') {
-  test('Works with global binaries', async t => {
+  test('Global binaries', async t => {
     await runPrint(t, [`${FIXTURES_DIR}/unix`])
   })
 }
@@ -25,11 +25,11 @@ if (platform === 'win32') {
   each(['10.16.0', '13.1.0'], ({ title }, nodeVersion) => {
     const fixtureDir = join(FIXTURES_DIR, nodeVersion)
 
-    test(`Works with global binaries | ${title}`, async t => {
+    test(`Global binaries | ${title}`, async t => {
       await runPrint(t, [fixtureDir])
     })
 
-    test(`Works with extendEnv: false | ${title}`, async t => {
+    test(`extendEnv: false | ${title}`, async t => {
       await runPrint(t, [fixtureDir], { extendEnv: false })
     })
 
@@ -37,7 +37,7 @@ if (platform === 'win32') {
       await runPrint(t, [fixtureDir, `${__dirname}invalid`])
     })
 
-    test(`Works recursively | ${title}`, async t => {
+    test(`Recursively | ${title}`, async t => {
       await run({
         t,
         pathParts: [fixtureDir],
@@ -64,7 +64,7 @@ if (platform === 'win32') {
     })
   })
 
-  test('Works with PATH: undefined', async t => {
+  test('PATH: undefined', async t => {
     await runThrows(t, { env: { [PATH]: undefined } })
   })
 }

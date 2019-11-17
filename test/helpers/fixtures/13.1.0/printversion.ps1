@@ -9,10 +9,10 @@ if ($PSVersionTable.PSVersion -lt "6.0" -or $IsWindows) {
 }
 $ret=0
 if (Test-Path "$basedir/node$exe") {
-  & "$basedir/node$exe"  "$basedir/modules/printversion/main.js" $args
+  & "$basedir/node$exe"  "$basedir/node_modules/printversion/main.js" $args
   $ret=$LASTEXITCODE
 } else {
-  & "node$exe"  "$basedir/modules/printversion/main.js" $args
+  & "node$exe"  "$basedir/node_modules/printversion/main.js" $args
   $ret=$LASTEXITCODE
 }
 exit $ret

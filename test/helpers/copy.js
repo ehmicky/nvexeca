@@ -38,8 +38,8 @@ export const run = async function({
     env: { [PATH]: pathEnv },
     ...execaOptions,
   })
-
   const { stdout } = await childProcess
+
   t.is(stdout, `v${version}`)
 }
 
