@@ -1,3 +1,10 @@
+# 1.5.4
+
+## Bug fixes
+
+- Fix global binaries
+  [not working on Windows](https://github.com/ehmicky/nve/issues/14)
+
 # 1.5.3
 
 ## Bug fixes
