@@ -1,3 +1,13 @@
+# 1.7.0
+
+## Features
+
+- Node.js binary download is now 50% faster on Windows
+
+## Bug fixes
+
+- Fix crash when Node.js binary URL is invalid
+
 # 1.6.0
 
 ## Features
