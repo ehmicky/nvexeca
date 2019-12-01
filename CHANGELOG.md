@@ -1,3 +1,13 @@
+# 1.6.0
+
+## Features
+
+- Node.js binary download is now twice faster on Windows
+
+## Bug fixes
+
+- Fix ARM, PowerPC, S390 support
+
 # 1.5.5
 
 ## Bug fixes
