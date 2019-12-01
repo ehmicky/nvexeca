@@ -1,6 +1,6 @@
 {
   "name": "nvexeca",
-  "version": "1.5.5",
+  "version": "1.6.0",
   "main": "build/src/main.js",
   "files": [
     "build/src",
