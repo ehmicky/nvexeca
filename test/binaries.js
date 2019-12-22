@@ -1,3 +1,5 @@
+import { join } from 'path'
+
 import test from 'ava'
 import execa from 'execa'
 import del from 'del'
@@ -7,10 +9,10 @@ import nvexeca from '../src/main.js'
 import { run } from './helpers/copy.js'
 import { HELPER_VERSION, TEST_VERSION } from './helpers/versions.js'
 
-const FIXTURES_DIR = `${__dirname}/helpers/fixtures`
+const FIXTURES_DIR = join(__dirname, 'helpers', 'fixtures')
 // `npm install -g` to `os.tmpdir()` throws a `chmod()` error, so we use a local
 // directory
-const TMP_DIR = `${__dirname}/helpers/tmp`
+const TMP_DIR = join(__dirname, 'helpers', 'tmp')
 
 test('Global binaries integration test', async t => {
   await execa('npm', ['install', '-g', `${FIXTURES_DIR}/package`], {
@@ -19,7 +21,8 @@ test('Global binaries integration test', async t => {
   })
   await run({
     t,
-    pathParts: [`${TMP_DIR}/bin`],
+    // Unix installs inside `bin` but not Windows
+    pathParts: [TMP_DIR, `${TMP_DIR}/bin`],
     version: TEST_VERSION,
     command: 'package',
     args: [],
