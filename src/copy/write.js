@@ -1,8 +1,7 @@
-import { writeFile, rename } from 'fs'
+import { writeFile, rename, promises } from 'fs'
 import { promisify } from 'util'
 
 import pathExists from 'path-exists'
-import makeDir from 'make-dir'
 import del from 'del'
 
 const pWriteFile = promisify(writeFile)
@@ -21,7 +20,7 @@ export const writeBinaries = async function(srcPaths, distBinDir) {
   }
 
   const tmpBinDir = getTmpBinDir(distBinDir)
-  await makeDir(tmpBinDir)
+  await promises.mkdir(tmpBinDir, { recursive: true })
 
   await Promise.all(srcPaths.map(srcPath => writeBinary(srcPath, tmpBinDir)))
 
