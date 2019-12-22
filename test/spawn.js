@@ -67,7 +67,7 @@ test('Can run in shell mode', async t => {
   const { exitCode, stdout } = await childProcess
 
   t.is(exitCode, 0)
-  t.is(stdout, `v${TEST_VERSION}\nv${TEST_VERSION}`)
+  t.is(stdout.replace('\r', ''), `v${TEST_VERSION}\nv${TEST_VERSION}`)
 })
 
 const runWithoutPath = function(execaOptions) {
