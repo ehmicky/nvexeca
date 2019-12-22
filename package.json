@@ -51,7 +51,7 @@
   "dependencies": {
     "core-js": "^3.6.0",
     "del": "^5.1.0",
-    "execa": "^3.4.0",
+    "execa": "^4.0.0",
     "filter-obj": "^2.0.1",
     "get-node": "^6.6.0",
     "global-cache-dir": "^1.0.1",
