@@ -1,11 +1,7 @@
-import { writeFile, rename, promises } from 'fs'
-import { promisify } from 'util'
+import { promises } from 'fs'
 
 import pathExists from 'path-exists'
 import del from 'del'
-
-const pWriteFile = promisify(writeFile)
-const pRename = promisify(rename)
 
 // Copy binaries to the destination directory.
 // Directories contain their contents hash in their filename, i.e. if they
@@ -25,7 +21,7 @@ export const writeBinaries = async function(srcPaths, distBinDir) {
   await Promise.all(srcPaths.map(srcPath => writeBinary(srcPath, tmpBinDir)))
 
   try {
-    await pRename(tmpBinDir, distBinDir)
+    await promises.rename(tmpBinDir, distBinDir)
     // This might fail if two concurrent processes are happening at exactly the
     // same time
   } catch {
@@ -40,7 +36,7 @@ const getTmpBinDir = function(distBinDir) {
 
 const writeBinary = async function({ filename, content }, tmpBinDir) {
   const tmpPath = `${tmpBinDir}/${filename}`
-  await pWriteFile(tmpPath, content, { mode: DIST_MODE })
+  await promises.writeFile(tmpPath, content, { mode: DIST_MODE })
 }
 
 const DIST_MODE = 0o755

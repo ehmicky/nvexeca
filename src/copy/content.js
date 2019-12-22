@@ -1,10 +1,7 @@
 import { relative } from 'path'
-import { promisify } from 'util'
-import { readFile } from 'fs'
+import { promises } from 'fs'
 
 import { getDistBinString } from './output.js'
-
-const pReadFile = promisify(readFile)
 
 // We need to slightly modify the binaries so that their file paths take into
 // account the new location. Moving the binaries should make the
@@ -19,7 +16,7 @@ export const getContent = async function({
   output,
 }) {
   const path = `${srcBinDir}/${filename}`
-  const content = await pReadFile(path, 'utf8')
+  const content = await promises.readFile(path, 'utf8')
   const distBinDir = getDistBinString(output, 'hash')
   const distContent = CONTENTS[type]({ distBinDir, srcBinDir, content })
   return distContent

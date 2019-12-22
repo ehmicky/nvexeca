@@ -1,15 +1,10 @@
 import { delimiter } from 'path'
-import { readdir, stat, readFile } from 'fs'
-import { promisify } from 'util'
+import { promises } from 'fs'
 
 import pathExists from 'path-exists'
 
 import { getContent } from './content.js'
 import { isOutputDir } from './output.js'
-
-const pReaddir = promisify(readdir)
-const pStat = promisify(stat)
-const pReadFile = promisify(readFile)
 
 // Retrieve the list of binaries to copy.
 // Look inside each directory in `PATH` to find any npm global binary executed
@@ -31,7 +26,7 @@ const getSrcPaths = async function(srcBinDir, output) {
     return []
   }
 
-  const filenames = await pReaddir(srcBinDir)
+  const filenames = await promises.readdir(srcBinDir)
   const srcPaths = await Promise.all(
     filenames.map(filename =>
       getSrcPath({ srcBinDir, filenames, filename, output }),
@@ -80,13 +75,13 @@ const isNodeBinary = async function(srcBinDir, filenames, bashFilename) {
   }
 
   const bashPath = `${srcBinDir}/${bashFilename}`
-  const bashStat = await pStat(bashPath)
+  const bashStat = await promises.stat(bashPath)
 
   if (!bashStat.isFile()) {
     return false
   }
 
-  const bashContent = await pReadFile(bashPath, 'utf8')
+  const bashContent = await promises.readFile(bashPath, 'utf8')
   return NODE_DETECT_REGEXP.test(bashContent)
 }
 
