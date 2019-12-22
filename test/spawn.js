@@ -64,13 +64,10 @@ test('Can run in shell mode', async t => {
     [],
     { shell: true },
   )
-  const { exitCode } = await childProcess
+  const { exitCode, stdout } = await childProcess
 
   t.is(exitCode, 0)
-  // TODO: enable the following line. It currently does not work with nyc
-  // This might be fixed with nyc@15
-  // See https://github.com/istanbuljs/spawn-wrap/issues/108
-  // t.is(stdout, `v${TEST_VERSION}\nv${TEST_VERSION}`)
+  t.is(stdout, `v${TEST_VERSION}\nv${TEST_VERSION}`)
 })
 
 const runWithoutPath = function(execaOptions) {
