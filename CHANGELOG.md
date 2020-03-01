@@ -1,3 +1,11 @@
+# 2.1.0
+
+## Features
+
+- Add
+  [`arch` option](https://github.com/ehmicky/nvexeca/blob/master/README.md#arch)
+  to specify the CPU architecture.
+
 # 2.0.0
 
 ## Breaking changes
