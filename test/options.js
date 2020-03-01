@@ -16,6 +16,7 @@ each(
     [TEST_VERSION, 'node', [], { dry: '' }],
     [TEST_VERSION, 'node', [], { progress: '' }],
     [TEST_VERSION, 'node', [], { mirror: true }],
+    [TEST_VERSION, 'node', [], { arch: true }],
     ['invalid_version', 'node'],
   ],
   ({ title }, [versionRange, command, args, opts]) => {

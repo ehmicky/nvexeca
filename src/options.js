@@ -1,3 +1,5 @@
+import { arch as currentArch } from 'process'
+
 import { validate } from 'jest-validate'
 import filterObj from 'filter-obj'
 import isPlainObj from 'is-plain-obj'
@@ -10,8 +12,8 @@ export const getOpts = function({ versionRange, command, args, opts }) {
 
   validateBasic({ versionRange, command, args: argsA, opts: optsA })
 
-  const { dry, progress, mirror, ...execaOptions } = optsA
-  const optsB = { dry, progress, mirror }
+  const { dry, progress, mirror, arch, ...execaOptions } = optsA
+  const optsB = { dry, progress, mirror, arch }
 
   validate(optsB, { exampleConfig: EXAMPLE_OPTS })
 
@@ -46,4 +48,5 @@ const DEFAULT_OPTS = {
 const EXAMPLE_OPTS = {
   ...DEFAULT_OPTS,
   mirror: 'https://nodejs.org/dist',
+  arch: currentArch,
 }
