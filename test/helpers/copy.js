@@ -9,7 +9,7 @@ import { TEST_VERSION } from './versions.js'
 
 const PATH = pathKey()
 
-export const runPrint = async function(t, pathParts, execaOptions) {
+export const runPrint = async function (t, pathParts, execaOptions) {
   await run({
     t,
     pathParts,
@@ -25,7 +25,7 @@ export const runPrint = async function(t, pathParts, execaOptions) {
 // `process.version`) output is showing the correct Node.js version.
 // This is used to check that Windows binaries are using the right Node.js
 // version.
-export const run = async function({
+export const run = async function ({
   t,
   pathParts,
   execaOptions,
@@ -43,7 +43,7 @@ export const run = async function({
   t.is(stdout, `v${version}`)
 }
 
-export const runThrows = async function(t, execaOptions) {
+export const runThrows = async function (t, execaOptions) {
   const { childProcess } = await nvexeca(
     TEST_VERSION,
     'printversion',

@@ -7,7 +7,7 @@ import { getCommand, getExecaOptions } from './spawn.js'
 
 // Forwards command to another node instance of a specific `versionRange`
 // eslint-disable-next-line max-params
-const nvexeca = async function(versionRange, command, args, opts) {
+const nvexeca = async function (versionRange, command, args, opts) {
   const {
     args: argsA,
     opts: { dry, progress, mirror, arch },
@@ -39,7 +39,7 @@ const nvexeca = async function(versionRange, command, args, opts) {
   }
 }
 
-const startProcess = function({ command, args, execaOptions, dry }) {
+const startProcess = function ({ command, args, execaOptions, dry }) {
   if (dry) {
     return
   }

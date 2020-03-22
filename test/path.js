@@ -20,7 +20,7 @@ each(
   ],
   [{}, { [pathKey()]: undefined }],
   ({ title }, args, env) => {
-    test(`Works with child processes | ${title}`, async t => {
+    test(`Works with child processes | ${title}`, async (t) => {
       const { childProcess } = await nvexeca(
         HELPER_VERSION,
         'node',
@@ -34,7 +34,7 @@ each(
   },
 )
 
-test.serial('Works with nyc as child', async t => {
+test.serial('Works with nyc as child', async (t) => {
   const { childProcess } = await nvexeca(HELPER_VERSION, 'nyc', [
     '--silent',
     '--',
@@ -46,13 +46,13 @@ test.serial('Works with nyc as child', async t => {
   t.is(stdout, `v${HELPER_VERSION}`)
 })
 
-test('Works with nyc as parent with node command', async t => {
+test('Works with nyc as parent with node command', async (t) => {
   const { stdout } = await execa.command(`nyc --silent -- node ${DEEP_FILE}`)
 
   t.is(stdout, `v${HELPER_VERSION}`)
 })
 
-test('Does not change process.execPath', async t => {
+test('Does not change process.execPath', async (t) => {
   // eslint-disable-next-line no-restricted-globals, node/prefer-global/process
   const { execPath } = process
   await nvexeca(TEST_VERSION, 'node', ['--version'])

@@ -4,7 +4,7 @@ import { join, normalize } from 'path'
 import globalCacheDir from 'global-cache-dir'
 
 // Retrieve cache directory
-export const getOutput = function() {
+export const getOutput = function () {
   return globalCacheDir(CACHE_DIR)
 }
 
@@ -17,36 +17,36 @@ const CACHE_DIR = 'nve'
 // For performance reasons and better concurrent behavior, two `nvexeca()` calls
 // with the same directory contents share the same directory. We do this by
 // hashing that contents and including the hash in the directory filename.
-export const getDistBinDir = function(output, srcPaths) {
+export const getDistBinDir = function (output, srcPaths) {
   const hash = getHash(srcPaths)
   const distBinDir = getDistBinString(output, hash)
   return distBinDir
 }
 
-const getHash = function(srcPaths) {
+const getHash = function (srcPaths) {
   const contents = srcPaths.map(getSrcPathHash).join('\n')
   const hash = computeSha(contents)
   return hash
 }
 
-const getSrcPathHash = function({ filename, content }) {
+const getSrcPathHash = function ({ filename, content }) {
   return `${filename}\n${content}`
 }
 
-const computeSha = function(contents) {
+const computeSha = function (contents) {
   const hashStream = createHash('sha256')
   hashStream.update(contents)
   const hash = hashStream.digest('hex')
   return hash
 }
 
-export const getDistBinString = function(output, hash) {
+export const getDistBinString = function (output, hash) {
   return join(output, BIN_DIR_PARENT, `${hash}${BIN_DIR_SUFFIX}`)
 }
 
 // If the output directory is in the PATH, we ignore it.
 // This happens on recursive calls.
-export const isOutputDir = function(dir) {
+export const isOutputDir = function (dir) {
   const dirA = normalize(dir).replace(TRAILING_SLASH_REGEXP, '')
   return dirA.endsWith(BIN_DIR_SUFFIX)
 }

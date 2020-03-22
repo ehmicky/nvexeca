@@ -7,7 +7,7 @@ import { npm } from 'global-dirs'
 //  - with nested child processes
 //  - with binaries
 // This is also slightly faster as it does not require any `$PATH` lookup.
-export const getCommand = function(nodePath, command) {
+export const getCommand = function (nodePath, command) {
   if (command === 'node') {
     return nodePath
   }
@@ -22,7 +22,7 @@ export const getCommand = function(nodePath, command) {
 //  - binaries work, even on Windows
 // We use `execa` `execPath` for this.
 // This option requires `preferLocal: true`
-export const getExecaOptions = function(nodePath, { env, ...execaOptions }) {
+export const getExecaOptions = function (nodePath, { env, ...execaOptions }) {
   const envA = addPrefix(env)
   return { ...execaOptions, env: envA, execPath: nodePath, preferLocal: true }
 }
@@ -36,6 +36,6 @@ export const getExecaOptions = function(nodePath, { env, ...execaOptions }) {
 // We use `global-dirs` which provides the best value for `NPM_CONFIG_PREFIX`
 // since it takes into account npmrc, npm_config_prefix, environment variables,
 // etc.
-export const addPrefix = function(env) {
+export const addPrefix = function (env) {
   return { NPM_CONFIG_PREFIX: npm.prefix, ...env }
 }

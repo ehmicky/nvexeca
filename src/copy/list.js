@@ -9,15 +9,15 @@ import { isOutputDir } from './output.js'
 // Retrieve the list of binaries to copy.
 // Look inside each directory in `PATH` to find any npm global binary executed
 // with Node.
-export const listSrcPaths = async function(pathValue, output) {
+export const listSrcPaths = async function (pathValue, output) {
   const srcBinDirs = pathValue.split(delimiter)
   const srcPaths = await Promise.all(
-    srcBinDirs.map(srcBinDir => getSrcPaths(srcBinDir, output)),
+    srcBinDirs.map((srcBinDir) => getSrcPaths(srcBinDir, output)),
   )
   return srcPaths.flat().filter(hasPriority)
 }
 
-const getSrcPaths = async function(srcBinDir, output) {
+const getSrcPaths = async function (srcBinDir, output) {
   if (isOutputDir(srcBinDir)) {
     return []
   }
@@ -28,7 +28,7 @@ const getSrcPaths = async function(srcBinDir, output) {
 
   const filenames = await promises.readdir(srcBinDir)
   const srcPaths = await Promise.all(
-    filenames.map(filename =>
+    filenames.map((filename) =>
       getSrcPath({ srcBinDir, filenames, filename, output }),
     ),
   )
@@ -38,7 +38,7 @@ const getSrcPaths = async function(srcBinDir, output) {
 // We are looking for *.cmd files that have a sibling Bash file. Those are
 // most likely to be npm global binaries.
 // Each detected *.cmd file also return its sibling Bash and Powershell file.
-const getSrcPath = async function({ srcBinDir, filenames, filename, output }) {
+const getSrcPath = async function ({ srcBinDir, filenames, filename, output }) {
   if (!CMD_BINARY_REGEXP.test(filename)) {
     return []
   }
@@ -69,7 +69,7 @@ const CMD_BINARY_REGEXP = /\.cmd$/u
 // not need to be fixed, i.e. can be skipped.
 // We detect this by looking at the binary file's content looking for the `node`
 // word.
-const isNodeBinary = async function(srcBinDir, filenames, bashFilename) {
+const isNodeBinary = async function (srcBinDir, filenames, bashFilename) {
   if (!filenames.includes(bashFilename)) {
     return false
   }
@@ -90,7 +90,7 @@ const isNodeBinary = async function(srcBinDir, filenames, bashFilename) {
 // with Node 10.17.0 (our minimally supported Node version)
 const NODE_DETECT_REGEXP = /\[ -x "(\$basedir\/node|\$NODE_EXE)" \]/u
 
-const readSrcPaths = function({
+const readSrcPaths = function ({
   srcBinDir,
   bashFilename,
   filename,
@@ -110,15 +110,15 @@ const readSrcPaths = function({
 }
 
 // Find out the content of the copied file
-const readSrcPath = async function({ type, srcBinDir, filename, output }) {
+const readSrcPath = async function ({ type, srcBinDir, filename, output }) {
   const content = await getContent({ type, srcBinDir, filename, output })
   return { filename, content }
 }
 
 // The same binary might be present several times in `PATH`. We only keep the
 // first one, to respect `PATH` priority order.
-const hasPriority = function({ filename }, index, srcPaths) {
+const hasPriority = function ({ filename }, index, srcPaths) {
   return srcPaths
     .slice(0, index)
-    .every(srcPath => srcPath.filename !== filename)
+    .every((srcPath) => srcPath.filename !== filename)
 }

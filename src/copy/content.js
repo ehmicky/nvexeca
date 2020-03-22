@@ -9,7 +9,7 @@ import { getDistBinString } from './output.js'
 // Note that global binaries use `cmd-shim` (https://github.com/npm/cmd-shim) to
 // produce the shim files. But `npm` and `npx` global binaries shim files are
 // slightly different (https://github.com/npm/cli/blob/latest/bin/npm)
-export const getContent = async function({
+export const getContent = async function ({
   type,
   srcBinDir,
   filename,
@@ -24,7 +24,7 @@ export const getContent = async function({
 
 // The *.cmd file changes in `cmd-shim@3.0.0` (shipped with Node `10.17.0`).
 // However the RegExp below works regardless of those changes.
-const getCmdContent = function({ distBinDir, srcBinDir, content }) {
+const getCmdContent = function ({ distBinDir, srcBinDir, content }) {
   const relPath = relative(distBinDir, srcBinDir).replace(SLASH_REGEXP, '\\')
   return content.replace(CMD_REGEXP, `\\${relPath}$&`)
 }
@@ -36,7 +36,7 @@ const CMD_REGEXP = /\\node_modules/gu
 // However the RegExp below works regardless of those changes.
 // This also works with the Powershell file, which was added by `cmd-shim@3.0.0`
 // (shipped with Node `10.17.0`).
-const getShellContent = function({ distBinDir, srcBinDir, content }) {
+const getShellContent = function ({ distBinDir, srcBinDir, content }) {
   const relPath = relative(distBinDir, srcBinDir).replace(BACKSLASH_REGEXP, '/')
   return content.replace(SHELL_REGEXP, `/${relPath}$&`)
 }

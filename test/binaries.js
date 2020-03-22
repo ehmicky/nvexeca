@@ -14,7 +14,7 @@ const FIXTURES_DIR = join(__dirname, 'helpers', 'fixtures')
 // directory
 const TMP_DIR = join(__dirname, 'helpers', 'tmp')
 
-test('Global binaries integration test', async t => {
+test('Global binaries integration test', async (t) => {
   await execa('npm', ['install', '-g', `${FIXTURES_DIR}/package`], {
     env: { NPM_CONFIG_PREFIX: TMP_DIR },
     stdio: 'ignore',
@@ -31,7 +31,7 @@ test('Global binaries integration test', async t => {
   await del(TMP_DIR, { force: true })
 })
 
-test('npm', async t => {
+test('npm', async (t) => {
   const { childProcess } = await nvexeca(HELPER_VERSION, 'npm', [
     'bin',
     '--loglevel',
@@ -42,7 +42,7 @@ test('npm', async t => {
   t.true(stderr.includes(`node@v${HELPER_VERSION}`))
 })
 
-test('npx', async t => {
+test('npx', async (t) => {
   const { childProcess } = await nvexeca(HELPER_VERSION, 'npx', [
     'npm',
     'bin',
