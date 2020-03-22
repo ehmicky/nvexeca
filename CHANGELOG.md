@@ -1,3 +1,9 @@
+# 2.1.2
+
+## Bug fixes
+
+- Fix terminal color changing on Windows
+
 # 2.1.1
 
 ## Bug fixes
