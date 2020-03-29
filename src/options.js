@@ -1,8 +1,8 @@
 import { arch as currentArch } from 'process'
 
-import { validate } from 'jest-validate'
 import filterObj from 'filter-obj'
 import isPlainObj from 'is-plain-obj'
+import { validate } from 'jest-validate'
 
 import { validateBasic } from './validate.js'
 

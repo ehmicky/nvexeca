@@ -1,8 +1,8 @@
-import getNode from 'get-node'
 import execa from 'execa'
+import getNode from 'get-node'
 
-import { getOpts } from './options.js'
 import { copyBinaries } from './copy/main.js'
+import { getOpts } from './options.js'
 import { getCommand, getExecaOptions } from './spawn.js'
 
 // Forwards command to another node instance of a specific `versionRange`

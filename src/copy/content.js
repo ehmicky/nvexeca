@@ -1,5 +1,5 @@
-import { relative } from 'path'
 import { promises } from 'fs'
+import { relative } from 'path'
 
 import { getDistBinString } from './output.js'
 

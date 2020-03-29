@@ -1,7 +1,7 @@
 import test from 'ava'
-import { each } from 'test-each'
-import pathKey from 'path-key'
 import execa from 'execa'
+import pathKey from 'path-key'
+import { each } from 'test-each'
 
 import nvexeca from '../src/main.js'
 

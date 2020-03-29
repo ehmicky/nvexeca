@@ -1,8 +1,8 @@
 import { join } from 'path'
 
 import test from 'ava'
-import execa from 'execa'
 import del from 'del'
+import execa from 'execa'
 
 import nvexeca from '../src/main.js'
 

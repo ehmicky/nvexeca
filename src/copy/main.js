@@ -1,8 +1,8 @@
 import { platform } from 'process'
 
-import { getPath, addToPath } from './path.js'
-import { getOutput, getDistBinDir } from './output.js'
 import { listSrcPaths } from './list.js'
+import { getOutput, getDistBinDir } from './output.js'
+import { getPath, addToPath } from './path.js'
 import { writeBinaries } from './write.js'
 
 // npm install global binaries on Unix with symlinks. But on Windows, it creates

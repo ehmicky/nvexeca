@@ -1,5 +1,5 @@
-import { delimiter } from 'path'
 import { promises } from 'fs'
+import { delimiter } from 'path'
 
 import pathExists from 'path-exists'
 

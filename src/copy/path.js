@@ -1,5 +1,5 @@
-import { env } from 'process'
 import { delimiter } from 'path'
+import { env } from 'process'
 
 import pathKey from 'path-key'
 

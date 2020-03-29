@@ -1,9 +1,9 @@
-import { platform } from 'process'
 import { join } from 'path'
+import { platform } from 'process'
 
 import test from 'ava'
-import { each } from 'test-each'
 import pathKey from 'path-key'
+import { each } from 'test-each'
 
 import { runPrint, run, runThrows } from './helpers/copy.js'
 import { HELPER_VERSION } from './helpers/versions.js'

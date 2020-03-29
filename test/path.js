@@ -1,9 +1,9 @@
 import { normalize } from 'path'
 
 import test from 'ava'
-import { each } from 'test-each'
 import execa from 'execa'
 import pathKey from 'path-key'
+import { each } from 'test-each'
 
 import nvexeca from '../src/main.js'
 
