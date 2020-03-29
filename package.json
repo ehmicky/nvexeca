@@ -62,7 +62,7 @@
     "path-key": "^3.1.1"
   },
   "devDependencies": {
-    "@ehmicky/dev-tasks": "^0.31.30",
+    "@ehmicky/dev-tasks": "^0.31.31",
     "ava": "^3.5.2",
     "gulp": "^4.0.2",
     "husky": "^4.2.3",
