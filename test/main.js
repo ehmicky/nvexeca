@@ -1,4 +1,5 @@
 import { ChildProcess } from 'child_process'
+import { versions } from 'process'
 
 import test from 'ava'
 
@@ -18,6 +19,11 @@ test('Return non-normalized Node.js version', async (t) => {
   ])
 
   t.is(versionRange, `v${TEST_VERSION}`)
+})
+
+test('Can use aliases', async (t) => {
+  const { version } = await nvexeca('_', 'node', ['--version'])
+  t.is(version, versions.node)
 })
 
 test('Can omit arguments but specify options', async (t) => {
