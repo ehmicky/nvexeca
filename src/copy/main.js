@@ -1,7 +1,7 @@
 import { platform } from 'process'
 
 import { listSrcPaths } from './list.js'
-import { getOutput, getDistBinDir } from './output.js'
+import { getDistBinDir } from './output.js'
 import { getPath, addToPath } from './path.js'
 import { writeBinaries } from './write.js'
 
@@ -30,24 +30,22 @@ export const copyBinaries = async function (execaOptions) {
     return execaOptions
   }
 
-  const output = await getOutput()
-  const srcPaths = await listSrcPaths(pathValue, output)
+  const srcPaths = await listSrcPaths(pathValue)
 
   if (srcPaths.length === 0) {
     return execaOptions
   }
 
-  return applyCopy({ execaOptions, pathName, pathValue, output, srcPaths })
+  return applyCopy({ execaOptions, pathName, pathValue, srcPaths })
 }
 
 const applyCopy = async function ({
   execaOptions,
   pathName,
   pathValue,
-  output,
   srcPaths,
 }) {
-  const distBinDir = getDistBinDir(output, srcPaths)
+  const distBinDir = await getDistBinDir(srcPaths)
   await writeBinaries(srcPaths, distBinDir)
 
   const execaOptionsA = addToPath({

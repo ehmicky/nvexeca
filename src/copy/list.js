@@ -1,5 +1,5 @@
 import { promises as fs } from 'fs'
-import { delimiter } from 'path'
+import { delimiter, normalize } from 'path'
 
 import pathExists from 'path-exists'
 
@@ -9,27 +9,27 @@ import { isOutputDir } from './output.js'
 // Retrieve the list of binaries to copy.
 // Look inside each directory in `PATH` to find any npm global binary executed
 // with Node.
-export const listSrcPaths = async function (pathValue, output) {
+export const listSrcPaths = async function (pathValue) {
   const srcBinDirs = pathValue.split(delimiter)
-  const srcPaths = await Promise.all(
-    srcBinDirs.map((srcBinDir) => getSrcPaths(srcBinDir, output)),
-  )
+  const srcPaths = await Promise.all(srcBinDirs.map(getSrcPaths))
   return srcPaths.flat().filter(hasPriority)
 }
 
-const getSrcPaths = async function (srcBinDir, output) {
-  if (isOutputDir(srcBinDir)) {
+const getSrcPaths = async function (srcBinDir) {
+  const srcBinDirA = normalize(srcBinDir)
+
+  if (isOutputDir(srcBinDirA)) {
     return []
   }
 
-  if (!(await pathExists(srcBinDir))) {
+  if (!(await pathExists(srcBinDirA))) {
     return []
   }
 
-  const filenames = await fs.readdir(srcBinDir)
+  const filenames = await fs.readdir(srcBinDirA)
   const srcPaths = await Promise.all(
     filenames.map((filename) =>
-      getSrcPath({ srcBinDir, filenames, filename, output }),
+      getSrcPath({ srcBinDir: srcBinDirA, filenames, filename }),
     ),
   )
   return srcPaths.flat()
@@ -38,7 +38,7 @@ const getSrcPaths = async function (srcBinDir, output) {
 // We are looking for *.cmd files that have a sibling Bash file. Those are
 // most likely to be npm global binaries.
 // Each detected *.cmd file also return its sibling Bash and Powershell file.
-const getSrcPath = async function ({ srcBinDir, filenames, filename, output }) {
+const getSrcPath = async function ({ srcBinDir, filenames, filename }) {
   if (!CMD_BINARY_REGEXP.test(filename)) {
     return []
   }
@@ -57,7 +57,6 @@ const getSrcPath = async function ({ srcBinDir, filenames, filename, output }) {
     filename,
     ps1Filename,
     filenames,
-    output,
   })
   return srcPaths
 }
@@ -96,22 +95,21 @@ const readSrcPaths = function ({
   filename,
   ps1Filename,
   filenames,
-  output,
 }) {
   return Promise.all([
-    readSrcPath({ type: 'bash', srcBinDir, filename: bashFilename, output }),
-    readSrcPath({ type: 'cmd', srcBinDir, filename, output }),
+    readSrcPath({ type: 'bash', srcBinDir, filename: bashFilename }),
+    readSrcPath({ type: 'cmd', srcBinDir, filename }),
     // Powershell files were only added by `cmd-shim@3.0.0` (shipped since Node
     // 10.17.0)
     ...(filenames.includes(ps1Filename)
-      ? [readSrcPath({ type: 'ps1', srcBinDir, filename: ps1Filename, output })]
+      ? [readSrcPath({ type: 'ps1', srcBinDir, filename: ps1Filename })]
       : []),
   ])
 }
 
 // Find out the content of the copied file
-const readSrcPath = async function ({ type, srcBinDir, filename, output }) {
-  const content = await getContent({ type, srcBinDir, filename, output })
+const readSrcPath = async function ({ type, srcBinDir, filename }) {
+  const content = await getContent({ type, srcBinDir, filename })
   return { filename, content }
 }
 
