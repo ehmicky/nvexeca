@@ -1,4 +1,4 @@
-import { promises } from 'fs'
+import { promises as fs } from 'fs'
 import { delimiter } from 'path'
 
 import pathExists from 'path-exists'
@@ -26,7 +26,7 @@ const getSrcPaths = async function (srcBinDir, output) {
     return []
   }
 
-  const filenames = await promises.readdir(srcBinDir)
+  const filenames = await fs.readdir(srcBinDir)
   const srcPaths = await Promise.all(
     filenames.map((filename) =>
       getSrcPath({ srcBinDir, filenames, filename, output }),
@@ -75,13 +75,13 @@ const isNodeBinary = async function (srcBinDir, filenames, bashFilename) {
   }
 
   const bashPath = `${srcBinDir}/${bashFilename}`
-  const bashStat = await promises.stat(bashPath)
+  const bashStat = await fs.stat(bashPath)
 
   if (!bashStat.isFile()) {
     return false
   }
 
-  const bashContent = await promises.readFile(bashPath, 'utf8')
+  const bashContent = await fs.readFile(bashPath, 'utf8')
   return NODE_DETECT_REGEXP.test(bashContent)
 }
 

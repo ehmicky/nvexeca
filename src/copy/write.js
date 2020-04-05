@@ -1,4 +1,4 @@
-import { promises } from 'fs'
+import { promises as fs } from 'fs'
 
 import del from 'del'
 import pathExists from 'path-exists'
@@ -16,12 +16,12 @@ export const writeBinaries = async function (srcPaths, distBinDir) {
   }
 
   const tmpBinDir = getTmpBinDir(distBinDir)
-  await promises.mkdir(tmpBinDir, { recursive: true })
+  await fs.mkdir(tmpBinDir, { recursive: true })
 
   await Promise.all(srcPaths.map((srcPath) => writeBinary(srcPath, tmpBinDir)))
 
   try {
-    await promises.rename(tmpBinDir, distBinDir)
+    await fs.rename(tmpBinDir, distBinDir)
     // This might fail if two concurrent processes are happening at exactly the
     // same time
   } catch {
@@ -36,7 +36,7 @@ const getTmpBinDir = function (distBinDir) {
 
 const writeBinary = async function ({ filename, content }, tmpBinDir) {
   const tmpPath = `${tmpBinDir}/${filename}`
-  await promises.writeFile(tmpPath, content, { mode: DIST_MODE })
+  await fs.writeFile(tmpPath, content, { mode: DIST_MODE })
 }
 
 const DIST_MODE = 0o755

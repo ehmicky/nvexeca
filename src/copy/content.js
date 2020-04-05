@@ -1,4 +1,4 @@
-import { promises } from 'fs'
+import { promises as fs } from 'fs'
 import { relative } from 'path'
 
 import { getDistBinString } from './output.js'
@@ -16,7 +16,7 @@ export const getContent = async function ({
   output,
 }) {
   const path = `${srcBinDir}/${filename}`
-  const content = await promises.readFile(path, 'utf8')
+  const content = await fs.readFile(path, 'utf8')
   const distBinDir = getDistBinString(output, 'hash')
   const distContent = CONTENTS[type]({ distBinDir, srcBinDir, content })
   return distContent
