@@ -1,3 +1,9 @@
+# 2.1.3
+
+## Bug fixes
+
+- Fix crash when using multiple drives on Windows
+
 # 2.1.2
 
 ## Bug fixes
