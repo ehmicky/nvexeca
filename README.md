@@ -25,6 +25,8 @@ it:
 - does not require Bash
 - is installed as a Node module
 - works on Windows. No need to run as Administrator.
+- can guess the current project's version using its
+  [`.nvmrc`](#nvexecaversionrange-command-args-options)
 
 `nvexeca` executes a **single file or command**. It does not change the `node`
 nor `npm` global binaries. To run a specific Node.js version for an **entire
@@ -73,7 +75,12 @@ _options_: `object?`\
 _Return value_: `Promise<object>`
 
 `versionRange` can be any [version range](https://github.com/npm/node-semver)
-such as `12`, `12.6.0` or `<12`.
+such as `12`, `12.6.0` or `<12`, or one of the following aliases:
+
+- `_` : Current process's Node.js version
+- `.` : Node version from a `.nvmrc`, `.node-version` or `.naverc` file in the
+  current directory or any parent directory. Defaults to the current process's
+  Node.js version
 
 `command` is the file or command to execute. `args` are the arguments passed to
 it.
@@ -134,6 +141,16 @@ but would like to run Node.js x32.
 All the values from
 [`process.arch`](https://nodejs.org/api/process.html#process_process_arch) are
 allowed except `mips` and `mipsel`.
+
+#### cwd
+
+_Type_: `string`\
+_Default_: `process.cwd()`
+
+Current working directory of the child process.
+
+When using the [`.` alias](#nvexecaversionrange-command-args-options), this also
+starts looking for a Node.js version file from this directory.
 
 ### Return value
 
