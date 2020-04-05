@@ -25,8 +25,6 @@ it:
 - does not require Bash
 - is installed as a Node module
 - works on Windows. No need to run as Administrator.
-- can guess the current project's version using its
-  [`.nvmrc`](#nvexecaversionrange-command-args-options)
 
 `nvexeca` executes a **single file or command**. It does not change the `node`
 nor `npm` global binaries. To run a specific Node.js version for an **entire
