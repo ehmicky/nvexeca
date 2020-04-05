@@ -1,3 +1,14 @@
+# 2.2.0
+
+## Features
+
+- Can use the `_` alias to refer to the
+  [current process's Node.js version](/README.md#nvexecaversionrange-command-args-options)
+- Can use the `.` alias to refer to the
+  [current project's Node.js version](/README.md#nvexecaversionrange-command-args-options)
+  using its `.nvmrc`, `.node-version` or `.naverc`. The current directory can be
+  changed using the [`cwd` option](/README.md#cwd).
+
 # 2.1.3
 
 ## Bug fixes
