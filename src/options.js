@@ -1,4 +1,4 @@
-import { arch as currentArch } from 'process'
+import { arch as currentArch, cwd as getCwd } from 'process'
 
 import filterObj from 'filter-obj'
 import isPlainObj from 'is-plain-obj'
@@ -13,7 +13,7 @@ export const getOpts = function ({ versionRange, command, args, opts }) {
   validateBasic({ versionRange, command, args: argsA, opts: optsA })
 
   const { dry, progress, mirror, arch, ...execaOptions } = optsA
-  const optsB = { dry, progress, mirror, arch }
+  const optsB = { dry, progress, mirror, arch, cwd: execaOptions.cwd }
 
   validate(optsB, { exampleConfig: EXAMPLE_OPTS })
 
@@ -41,12 +41,17 @@ const isDefined = function (key, value) {
 }
 
 const DEFAULT_OPTS = {
-  progress: false,
   dry: false,
+  // Passed to fetch-node-website
+  progress: false,
 }
 
 const EXAMPLE_OPTS = {
   ...DEFAULT_OPTS,
-  mirror: 'https://nodejs.org/dist',
+  // Passed to get-node
   arch: currentArch,
+  // Passed to normalize-node-version
+  cwd: getCwd(),
+  // Passed to fetch-node-website
+  mirror: 'https://nodejs.org/dist',
 }

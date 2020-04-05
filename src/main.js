@@ -10,12 +10,12 @@ import { getCommand, getExecaOptions } from './spawn.js'
 const nvexeca = async function (versionRange, command, args, opts) {
   const {
     args: argsA,
-    opts: { dry, progress, mirror, arch },
+    opts: { dry, progress, mirror, arch, cwd },
     execaOptions,
   } = getOpts({ versionRange, command, args, opts })
 
   const [{ path: nodePath, version }, execaOptionsA] = await Promise.all([
-    getNode(versionRange, { progress, mirror, arch }),
+    getNode(versionRange, { progress, mirror, arch, cwd }),
     copyBinaries(execaOptions),
   ])
 
