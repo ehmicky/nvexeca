@@ -2,8 +2,10 @@
 
 ## Breaking changes
 
-- Rename `*` alias to [`latest` or `l`](/README.md#nvexecaversionrange-command-args-options)
-- Rename `.` alias to [`current` or `c`](/README.md#nvexecaversionrange-command-args-options)
+- Rename `*` alias to
+  [`latest` or `l`](/README.md#nvexecaversionrange-command-args-options)
+- Rename `.` alias to
+  [`current` or `c`](/README.md#nvexecaversionrange-command-args-options)
 - Remove `_` alias
 
 # 2.3.0
