@@ -1,7 +1,7 @@
 import { ChildProcess } from 'child_process'
-import { versions } from 'process'
 
 import test from 'ava'
+import { clean as cleanVersion } from 'semver'
 
 import nvexeca from '../src/main.js'
 
@@ -22,8 +22,8 @@ test('Return non-normalized Node.js version', async (t) => {
 })
 
 test('Can use aliases', async (t) => {
-  const { version } = await nvexeca('_', 'node', ['--version'])
-  t.is(version, versions.node)
+  const { version } = await nvexeca('latest', 'node', ['--version'])
+  t.is(cleanVersion(version), version)
 })
 
 test('Can omit arguments but specify options', async (t) => {

@@ -75,11 +75,10 @@ _Return value_: `Promise<object>`
 `versionRange` can be any [version range](https://github.com/npm/node-semver)
 such as `12`, `12.6.0` or `<12`, or one of the following aliases:
 
-- `*`: Latest available Node version
-- `.` : Node version from a `.nvmrc`, `.node-version` or `.naverc` file in the
-  current directory or any parent directory. Defaults to the current process's
-  Node version
-- `_` : Current process's Node version
+- `latest` or `l`: Latest available Node version
+- `current` or `c`: Node version from a `.nvmrc`, `.node-version` or `.naverc`
+  file in the current directory or any parent directory. Defaults to the current
+  process's Node version
 
 `command` is the file or command to execute. `args` are the arguments passed to
 it.
