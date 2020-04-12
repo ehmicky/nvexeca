@@ -12,8 +12,8 @@ export const getOpts = function ({ versionRange, command, args, opts }) {
 
   validateBasic({ versionRange, command, args: argsA, opts: optsA })
 
-  const { dry, progress, mirror, arch, ...execaOptions } = optsA
-  const optsB = { dry, progress, mirror, arch, cwd: execaOptions.cwd }
+  const { dry, progress, fetch, mirror, arch, ...execaOptions } = optsA
+  const optsB = { dry, progress, fetch, mirror, arch, cwd: execaOptions.cwd }
 
   validate(optsB, { exampleConfig: EXAMPLE_OPTS })
 
@@ -52,6 +52,8 @@ const EXAMPLE_OPTS = {
   arch: currentArch,
   // Passed to normalize-node-version
   cwd: getCwd(),
+  // Passed to all-node-versions
+  fetch: true,
   // Passed to fetch-node-website
   mirror: 'https://nodejs.org/dist',
 }

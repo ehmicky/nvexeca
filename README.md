@@ -129,6 +129,17 @@ Base URL to retrieve Node binaries. Can be overridden (for example
 The following environment variables can also be used: `NODE_MIRROR`,
 `NVM_NODEJS_ORG_MIRROR`, `N_NODE_MIRROR` or `NODIST_NODE_MIRROR`.
 
+#### fetch
+
+_Type_: `boolean`\
+_Default_: `undefined`
+
+The list of available Node.js versions is cached for one hour by default. If the
+`fetch` option is:
+
+- `true`: the cache will not be used
+- `false`: the cache will be used even if it's older than one hour
+
 #### arch
 
 _Type_: `string`\
