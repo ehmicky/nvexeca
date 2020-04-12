@@ -1,3 +1,9 @@
+# 3.0.1
+
+## Bug fixes
+
+- Fix aliases shortcuts `l` and `c`
+
 # 3.0.0
 
 ## Breaking changes
