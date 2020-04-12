@@ -53,7 +53,7 @@
     "del": "^5.1.0",
     "execa": "^4.0.0",
     "filter-obj": "^2.0.1",
-    "get-node": "^7.3.1",
+    "get-node": "^8.0.0",
     "global-cache-dir": "^2.0.0",
     "global-dirs": "^2.0.1",
     "is-plain-obj": "^2.1.0",
