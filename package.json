@@ -49,6 +49,7 @@
     "test": "test"
   },
   "dependencies": {
+    "core-js": "^3.6.5",
     "del": "^5.1.0",
     "execa": "^4.0.0",
     "filter-obj": "^2.0.1",
