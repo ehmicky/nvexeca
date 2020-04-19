@@ -1,3 +1,10 @@
+# 5.0.0
+
+## Breaking changes
+
+- Rename the [alias `now`](/README.md#nvexecaversionrange-command-args-options)
+  to `here`
+
 # 4.0.0
 
 ## Breaking changes

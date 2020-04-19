@@ -77,7 +77,7 @@ such as `12`, `12.6.0` or `<12`, or one of the following aliases:
 
 - `latest`: Latest available Node version
 - `lts`: Latest LTS Node version
-- `now`: Node version from any [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc)
+- `here`: Node version from any [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc)
   or
   [`package.json` (`engines.node` field)](https://docs.npmjs.com/files/package.json#engines)
   in the current directory, parent directories or home directory.
@@ -163,7 +163,7 @@ _Default_: `process.cwd()`
 
 Current working directory of the child process.
 
-When using the [`now` alias](#nvexecaversionrange-command-args-options), this
+When using the [`here` alias](#nvexecaversionrange-command-args-options), this
 also starts looking for a Node.js version file from this directory.
 
 ### Return value
