@@ -1,3 +1,9 @@
+# 6.0.1
+
+## Bug fixes
+
+- Fix crash when downloading several Node.js binaries in parallel
+
 # 6.0.0
 
 ## Breaking changes
