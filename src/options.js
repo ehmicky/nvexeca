@@ -19,7 +19,13 @@ export const getOpts = function ({ versionRange, command, args, opts }) {
 
   const optsC = filterObj(optsB, isDefined)
   const optsD = { ...DEFAULT_OPTS, ...optsC }
-  return { args: argsA, opts: optsD, execaOptions }
+
+  const { dry: dryA, getNodeOpts } = separateOpts(optsD)
+  return { args: argsA, dry: dryA, getNodeOpts, execaOptions }
+}
+
+const separateOpts = function ({ dry, progress, fetch, mirror, arch, cwd }) {
+  return { dry, getNodeOpts: { progress, fetch, mirror, arch, cwd } }
 }
 
 // `args` and `opts` are both optional

@@ -8,14 +8,15 @@ import { getCommand, getExecaOptions } from './spawn.js'
 // Forwards command to another node instance of a specific `versionRange`
 // eslint-disable-next-line max-params
 const nvexeca = async function (versionRange, command, args, opts) {
-  const {
-    args: argsA,
-    opts: { dry, progress, fetch, mirror, arch, cwd },
-    execaOptions,
-  } = getOpts({ versionRange, command, args, opts })
+  const { args: argsA, dry, getNodeOpts, execaOptions } = getOpts({
+    versionRange,
+    command,
+    args,
+    opts,
+  })
 
   const [{ path: nodePath, version }, execaOptionsA] = await Promise.all([
-    getNode(versionRange, { progress, fetch, mirror, arch, cwd }),
+    getNode(versionRange, getNodeOpts),
     copyBinaries(execaOptions),
   ])
 
