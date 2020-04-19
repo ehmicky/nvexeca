@@ -5,7 +5,7 @@ import { clean as cleanVersion } from 'semver'
 
 import nvexeca from '../src/main.js'
 
-import { TEST_VERSION } from './helpers/versions.js'
+import { TEST_VERSION, ALIAS_VERSION } from './helpers/versions.js'
 
 test('Return normalized Node.js version', async (t) => {
   const { version } = await nvexeca(`v${TEST_VERSION}`, 'node', ['--version'])
@@ -22,7 +22,7 @@ test('Return non-normalized Node.js version', async (t) => {
 })
 
 test('Can use aliases', async (t) => {
-  const { version } = await nvexeca('latest', 'node', ['--version'])
+  const { version } = await nvexeca(ALIAS_VERSION, 'node', ['--version'])
   t.is(cleanVersion(version), version)
 })
 

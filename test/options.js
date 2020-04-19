@@ -3,7 +3,7 @@ import { each } from 'test-each'
 
 import nvexeca from '../src/main.js'
 
-import { TEST_VERSION } from './helpers/versions.js'
+import { TEST_VERSION, INVALID_VERSION } from './helpers/versions.js'
 
 each(
   [
@@ -18,7 +18,7 @@ each(
     [TEST_VERSION, 'node', [], { fetch: 0 }],
     [TEST_VERSION, 'node', [], { mirror: true }],
     [TEST_VERSION, 'node', [], { arch: true }],
-    ['invalid_version', 'node'],
+    [INVALID_VERSION, 'node'],
   ],
   ({ title }, [versionRange, command, args, opts]) => {
     test(`Invalid arguments | ${title}`, async (t) => {
