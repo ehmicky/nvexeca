@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs'
 import { delimiter, normalize } from 'path'
 
-import pathExists from 'path-exists'
+import { isDirectory } from 'path-type'
 
 import { getContent } from './content.js'
 import { isOutputDir } from './output.js'
@@ -22,7 +22,7 @@ const getSrcPaths = async function (srcBinDir) {
     return []
   }
 
-  if (!(await pathExists(srcBinDirA))) {
+  if (!(await isDirectory(srcBinDirA))) {
     return []
   }
 
