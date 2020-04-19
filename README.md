@@ -77,13 +77,19 @@ such as `12`, `12.6.0` or `<12`, or one of the following aliases:
 
 - `latest`: Latest available Node version
 - `lts`: Latest LTS Node version
-- `here`: Node version from any [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc)
-  or
-  [`package.json` (`engines.node` field)](https://docs.npmjs.com/files/package.json#engines)
-  in the current directory, parent directories or home directory.
-  [Some additional files](https://github.com/ehmicky/preferred-node-version/blob/master/README.md)
-  used by other Node.js version managers are also searched for. Defaults to the
-  current process's Node version.
+- `global`: Global Node version
+  - Using the home directory [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc) or
+    [`package.json` (`engines.node` field)](https://docs.npmjs.com/files/package.json#engines)
+  - [Some additional files](https://github.com/ehmicky/preferred-node-version/blob/master/README.md)
+    used by other Node.js version managers are also searched for
+  - If nothing is found, defaults to the current process's Node version
+- `local`: Current directory's Node version
+  - Using the current directory or parent directories
+    [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc),
+    [`package.json` (`engines.node` field)](https://docs.npmjs.com/files/package.json#engines)
+    (or
+    [additional files](https://github.com/ehmicky/preferred-node-version/blob/master/README.md))
+  - Defaults to the `global` version
 
 `command` is the file or command to execute. `args` are the arguments passed to
 it.
@@ -163,7 +169,7 @@ _Default_: `process.cwd()`
 
 Current working directory of the child process.
 
-When using the [`here` alias](#nvexecaversionrange-command-args-options), this
+When using the [`local` alias](#nvexecaversionrange-command-args-options), this
 also starts looking for a Node.js version file from this directory.
 
 ### Return value

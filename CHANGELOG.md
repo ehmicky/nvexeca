@@ -1,3 +1,15 @@
+# 6.0.0
+
+## Breaking changes
+
+- Rename the [alias `here`](/README.md#nvexecaversionrange-command-args-options)
+  to `local`
+
+## Features
+
+- Add the [alias `global`](/README.md#nvexecaversionrange-command-args-options)
+  to target the global Node version, regardless of the current directory
+
 # 5.0.0
 
 ## Breaking changes
