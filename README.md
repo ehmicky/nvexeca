@@ -75,10 +75,15 @@ _Return value_: `Promise<object>`
 `versionRange` can be any [version range](https://github.com/npm/node-semver)
 such as `12`, `12.6.0` or `<12`, or one of the following aliases:
 
-- `latest` or `l`: Latest available Node version
-- `current` or `c`: Node version from a `.nvmrc`, `.node-version` or `.naverc`
-  file in the current directory or any parent directory. Defaults to the current
-  process's Node version
+- `latest`: Latest available Node version
+- `lts`: Latest LTS Node version
+- `now`: Node version from any [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc)
+  or
+  [`package.json` (`engines.node` field)](https://docs.npmjs.com/files/package.json#engines)
+  in the current directory, parent directories or home directory.
+  [Some additional files](https://github.com/ehmicky/preferred-node-version/blob/master/README.md)
+  used by other Node.js version managers are also searched for. Defaults to the
+  current process's Node version.
 
 `command` is the file or command to execute. `args` are the arguments passed to
 it.
@@ -158,8 +163,8 @@ _Default_: `process.cwd()`
 
 Current working directory of the child process.
 
-When using the [`.` alias](#nvexecaversionrange-command-args-options), this also
-starts looking for a Node.js version file from this directory.
+When using the [`now` alias](#nvexecaversionrange-command-args-options), this
+also starts looking for a Node.js version file from this directory.
 
 ### Return value
 
