@@ -57,7 +57,7 @@
     "global-cache-dir": "^2.0.0",
     "global-dirs": "^2.0.1",
     "is-plain-obj": "^2.1.0",
-    "jest-validate": "^25.4.0",
+    "jest-validate": "^25.5.0",
     "path-exists": "^4.0.0",
     "path-key": "^3.1.1",
     "path-type": "^4.0.0"
