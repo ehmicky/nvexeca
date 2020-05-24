@@ -71,5 +71,5 @@ test('Forward child process', async (t) => {
 test('Dry mode', async (t) => {
   const { childProcess } = await nvexeca(TEST_VERSION, 'node', { dry: true })
 
-  t.is(childProcess, undefined)
+  t.is(childProcess)
 })
