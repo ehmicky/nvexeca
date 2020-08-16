@@ -63,7 +63,7 @@
     "path-type": "^4.0.0"
   },
   "devDependencies": {
-    "@ehmicky/dev-tasks": "^0.31.60",
+    "@ehmicky/dev-tasks": "^0.31.61",
     "ava": "^3.11.1",
     "gulp": "^4.0.2",
     "husky": "^4.2.5",
