@@ -30,7 +30,7 @@
 - Aliases `c` and `current` renamed to `now`
 - The [alias `now`](/README.md#nvexecaversionrange-command-args-options) now
   takes into account `package.json` `engines.node` field and
-  [additional files](https://github.com/ehmicky/preferred-node-version/blob/master/README.md)
+  [additional files](https://github.com/ehmicky/preferred-node-version/blob/main/README.md)
   used by other Node.js version managers.
 - Alias `l` removed: please use `latest` instead
 
@@ -93,14 +93,14 @@
 ## Bug fixes
 
 - Fix
-  [`arch` option](https://github.com/ehmicky/nvexeca/blob/master/README.md#arch)
+  [`arch` option](https://github.com/ehmicky/nvexeca/blob/main/README.md#arch)
 
 # 2.1.0
 
 ## Features
 
 - Add
-  [`arch` option](https://github.com/ehmicky/nvexeca/blob/master/README.md#arch)
+  [`arch` option](https://github.com/ehmicky/nvexeca/blob/main/README.md#arch)
   to specify the CPU architecture.
 
 # 2.0.0
