@@ -100,6 +100,18 @@ it.
 
 Both global and local binaries can be executed.
 
+This returns a `Promise` which is resolved after the Node.js version has been
+cached locally (if it has not been cached yet). If you want to wait for the
+`command` to complete as well, you should `await` the returned `childProcess`.
+
+<!-- Remove 'eslint-skip' once estree supports top-level await -->
+<!-- eslint-skip -->
+
+```js
+const { childProcess } = await nvexeca('8', 'node', ['--version'])
+const { exitCode, stdout, stderr } = await childProcess
+```
+
 ### Options
 
 _Type_: `object`
@@ -184,6 +196,7 @@ _Type_:
 [`childProcess` instance](https://nodejs.org/api/child_process.html#child_process_class_childprocess).
 It is also a `Promise` resolving or rejecting with a
 [`childProcessResult`](https://github.com/sindresorhus/execa#childProcessResult).
+The `Promise` should be awaited if you want to wait for the process to complete.
 
 This is `undefined` when the [`dry`](#dry) option is `true`.
 
