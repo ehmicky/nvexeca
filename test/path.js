@@ -58,5 +58,6 @@ test('Does not change process.execPath', async (t) => {
   await nvexeca(TEST_VERSION, 'node', ['--version'])
 
   // eslint-disable-next-line no-restricted-globals, node/prefer-global/process
-  t.is(process.execPath, execPath)
+  const { execPath: newExecPath } = process
+  t.is(newExecPath, execPath)
 })
