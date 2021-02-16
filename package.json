@@ -64,7 +64,6 @@
   },
   "devDependencies": {
     "@ehmicky/dev-tasks": "^0.31.81",
-    "husky": "^4.3.8",
     "is-ci": "^2.0.0",
     "semver": "^7.3.4",
     "test-each": "^2.0.1",
