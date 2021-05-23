@@ -55,7 +55,7 @@ console.log(stdout) // v8.16.2
 npm install nvexeca
 ```
 
-`node >=10.17.0` must be installed. However the command run by `nvexeca` can use
+`node >=12.20.0` must be installed. However the command run by `nvexeca` can use
 any Node version (providing it is compatible with it).
 
 To use this as a CLI instead, please check
