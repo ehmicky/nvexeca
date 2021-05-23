@@ -56,7 +56,6 @@ const getSrcPath = async function ({ srcBinDir, filenames, filename }) {
     bashFilename,
     filename,
     ps1Filename,
-    filenames,
   })
   return srcPaths
 }
@@ -95,16 +94,11 @@ const readSrcPaths = function ({
   bashFilename,
   filename,
   ps1Filename,
-  filenames,
 }) {
   return Promise.all([
     readSrcPath({ type: 'bash', srcBinDir, filename: bashFilename }),
     readSrcPath({ type: 'cmd', srcBinDir, filename }),
-    // Powershell files were only added by `cmd-shim@3.0.0` (shipped since Node
-    // 10.17.0)
-    ...(filenames.includes(ps1Filename)
-      ? [readSrcPath({ type: 'ps1', srcBinDir, filename: ps1Filename })]
-      : []),
+    readSrcPath({ type: 'ps1', srcBinDir, filename: ps1Filename }),
   ])
 }
 
