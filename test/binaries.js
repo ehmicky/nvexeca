@@ -41,13 +41,3 @@ test('npm', async (t) => {
 
   t.true(stderr.includes(`node@v${HELPER_VERSION}`))
 })
-
-test('npx', async (t) => {
-  await run({
-    t,
-    pathParts: [],
-    version: HELPER_VERSION,
-    command: 'npx',
-    args: ['node', '--version'],
-  })
-})
