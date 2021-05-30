@@ -43,10 +43,11 @@ test('npm', async (t) => {
 })
 
 test('npx', async (t) => {
-  const { childProcess } = await nvexeca(HELPER_VERSION, 'npx', [
-    'node',
-    '--version',
-  ])
-  const { stdout } = await childProcess
-  t.is(stdout, `v${HELPER_VERSION}`)
+  await run({
+    t,
+    pathParts: [],
+    version: HELPER_VERSION,
+    command: 'npx',
+    args: ['node', '--version'],
+  })
 })
