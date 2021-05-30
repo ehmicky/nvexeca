@@ -44,12 +44,9 @@ test('npm', async (t) => {
 
 test('npx', async (t) => {
   const { childProcess } = await nvexeca(HELPER_VERSION, 'npx', [
-    'npm',
-    'bin',
-    '--loglevel',
-    'info',
+    'node',
+    '--version',
   ])
-  const { stderr } = await childProcess
-
-  t.true(stderr.includes(`node@v${HELPER_VERSION}`))
+  const { stdout } = await childProcess
+  t.is(stdout, `v${HELPER_VERSION}`)
 })
