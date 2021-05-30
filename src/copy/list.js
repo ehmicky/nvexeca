@@ -56,6 +56,7 @@ const getSrcPath = async function ({ srcBinDir, filenames, filename }) {
     bashFilename,
     filename,
     ps1Filename,
+    filenames,
   })
   return srcPaths
 }
@@ -94,11 +95,16 @@ const readSrcPaths = function ({
   bashFilename,
   filename,
   ps1Filename,
+  filenames,
 }) {
   return Promise.all([
     readSrcPath({ type: 'bash', srcBinDir, filename: bashFilename }),
     readSrcPath({ type: 'cmd', srcBinDir, filename }),
     readSrcPath({ type: 'ps1', srcBinDir, filename: ps1Filename }),
+    // npm and npx do not have *.ps1 files
+    ...(filenames.includes(ps1Filename)
+      ? [readSrcPath({ type: 'ps1', srcBinDir, filename: ps1Filename })]
+      : []),
   ])
 }
 
