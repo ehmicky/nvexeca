@@ -1,11 +1,14 @@
+import { join } from 'path'
+
 import test from 'ava'
-import execa from 'execa'
 import pathKey from 'path-key'
 import { each } from 'test-each'
 
 import nvexeca from '../src/main.js'
 
 import { TEST_VERSION, HELPER_VERSION } from './helpers/versions.js'
+
+const FIXTURES_DIR = join(__dirname, 'helpers', 'fixtures')
 
 each(
   [
@@ -77,14 +80,13 @@ const runWithoutPath = function (execaOptions) {
   })
 }
 
-test('Works with npm', async (t) => {
+test('Works with npm scripts', async (t) => {
   const { childProcess: nveChildProcess } = await nvexeca(
     HELPER_VERSION,
     'npm',
-    ['-g', 'bin'],
+    ['--loglevel=silent', 'test'],
+    { cwd: `${FIXTURES_DIR}/package_scripts` },
   )
   const { stdout: nveStdout } = await nveChildProcess
-  const { stdout } = await execa('npm', ['-g', 'bin'])
-
-  t.is(nveStdout, stdout)
+  t.is(nveStdout, `v${HELPER_VERSION}`)
 })
