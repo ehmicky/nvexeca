@@ -3,7 +3,7 @@ import { ChildProcess } from 'child_process'
 import test from 'ava'
 // eslint-disable-next-line node/no-missing-import, import/no-unresolved
 import nvexeca from 'nvexeca'
-import { clean as cleanVersion } from 'semver'
+import semver from 'semver'
 
 import { TEST_VERSION, ALIAS_VERSION } from './helpers/versions.js'
 
@@ -23,7 +23,7 @@ test('Return non-normalized Node.js version', async (t) => {
 
 test('Can use aliases', async (t) => {
   const { version } = await nvexeca(ALIAS_VERSION, 'node', ['--version'])
-  t.is(cleanVersion(version), version)
+  t.is(semver.clean(version), version)
 })
 
 test('Can omit arguments but specify options', async (t) => {
