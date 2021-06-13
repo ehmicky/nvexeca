@@ -5,8 +5,8 @@ import { copyBinaries } from './copy/main.js'
 import { getOpts } from './options.js'
 
 // Forwards command to another node instance of a specific `versionRange`
-// eslint-disable-next-line max-params
-const nvexeca = async function (versionRange, command, args, opts) {
+// eslint-disable-next-line max-params, import/no-default-export
+export default async function nvexeca(versionRange, command, args, opts) {
   const {
     args: argsA,
     dry,
@@ -72,7 +72,3 @@ const startProcess = function ({ command, args, execaOptions, dry }) {
 
   return execa(command, args, execaOptions)
 }
-
-// We do not use `export default` because Babel transpiles it in a way that
-// requires CommonJS users to `require(...).default` instead of `require(...)`.
-module.exports = nvexeca
