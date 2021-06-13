@@ -1,4 +1,4 @@
-import { normalize } from 'path'
+import { fileURLToPath } from 'url'
 
 import test from 'ava'
 import execa from 'execa'
@@ -9,8 +9,8 @@ import { each } from 'test-each'
 
 import { HELPER_VERSION, TEST_VERSION } from './helpers/versions.js'
 
-const FORK_FILE = normalize(`${__dirname}/helpers/fork.js`)
-const DEEP_FILE = normalize(`${__dirname}/helpers/deep.js`)
+const FORK_FILE = fileURLToPath(new URL('./helpers/fork.js', import.meta.url))
+const DEEP_FILE = fileURLToPath(new URL('./helpers/deep.js', import.meta.url))
 
 each(
   [

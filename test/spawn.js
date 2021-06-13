@@ -1,4 +1,4 @@
-import { join } from 'path'
+import { fileURLToPath } from 'url'
 
 import test from 'ava'
 // eslint-disable-next-line node/no-missing-import, import/no-unresolved
@@ -8,7 +8,9 @@ import { each } from 'test-each'
 
 import { TEST_VERSION, HELPER_VERSION } from './helpers/versions.js'
 
-const FIXTURES_DIR = join(__dirname, 'helpers', 'fixtures')
+const FIXTURES_DIR = fileURLToPath(
+  new URL('./helpers/fixtures', import.meta.url),
+)
 
 each(
   [

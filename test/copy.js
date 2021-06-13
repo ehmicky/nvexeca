@@ -1,5 +1,6 @@
 import { join } from 'path'
 import { platform } from 'process'
+import { fileURLToPath } from 'url'
 
 import test from 'ava'
 import pathKey from 'path-key'
@@ -8,8 +9,13 @@ import { each } from 'test-each'
 import { runPrint, run, runThrows } from './helpers/copy.js'
 import { HELPER_VERSION } from './helpers/versions.js'
 
-const FORK_FILE = join(__dirname, 'helpers', 'copy_fork.js')
-const FIXTURES_DIR = join(__dirname, 'helpers', 'fixtures')
+const FORK_FILE = fileURLToPath(
+  new URL('./helpers/copy_fork.js', import.meta.url),
+)
+const FIXTURES_DIR = fileURLToPath(
+  new URL('./helpers/fixtures', import.meta.url),
+)
+const INVALID_DIR = fileURLToPath(new URL('../invalid', import.meta.url))
 
 const PATH = pathKey()
 
@@ -34,7 +40,7 @@ if (platform === 'win32') {
     })
 
     test(`Non-existing directory in PATH | ${title}`, async (t) => {
-      await runPrint(t, [fixtureDir, `${__dirname}invalid`])
+      await runPrint(t, [fixtureDir, INVALID_DIR])
     })
 
     test(`Recursively | ${title}`, async (t) => {
