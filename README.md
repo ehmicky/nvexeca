@@ -38,7 +38,7 @@ instead.
 <!-- eslint-skip -->
 
 ```js
-const nvexeca = require('nvexeca')
+import nvexeca from 'nvexeca'
 
 const { childProcess, versionRange, version } = await nvexeca('8', 'node', [
   '--version',
