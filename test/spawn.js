@@ -1,10 +1,10 @@
 import { join } from 'path'
 
 import test from 'ava'
+// eslint-disable-next-line node/no-missing-import, import/no-unresolved
+import nvexeca from 'nvexeca'
 import pathKey from 'path-key'
 import { each } from 'test-each'
-
-import nvexeca from '../src/main.js'
 
 import { TEST_VERSION, HELPER_VERSION } from './helpers/versions.js'
 

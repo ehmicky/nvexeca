@@ -1,9 +1,9 @@
 import { ChildProcess } from 'child_process'
 
 import test from 'ava'
+// eslint-disable-next-line node/no-missing-import, import/no-unresolved
+import nvexeca from 'nvexeca'
 import { clean as cleanVersion } from 'semver'
-
-import nvexeca from '../src/main.js'
 
 import { TEST_VERSION, ALIAS_VERSION } from './helpers/versions.js'
 

@@ -1,9 +1,9 @@
 import { delimiter } from 'path'
 import { env } from 'process'
 
+// eslint-disable-next-line node/no-missing-import, import/no-unresolved
+import nvexeca from 'nvexeca'
 import pathKey from 'path-key'
-
-import nvexeca from '../../src/main.js'
 
 import { TEST_VERSION } from './versions.js'
 

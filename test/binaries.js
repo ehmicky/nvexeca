@@ -3,8 +3,8 @@ import { join } from 'path'
 import test from 'ava'
 import del from 'del'
 import execa from 'execa'
-
-import nvexeca from '../src/main.js'
+// eslint-disable-next-line node/no-missing-import, import/no-unresolved
+import nvexeca from 'nvexeca'
 
 import { run } from './helpers/copy.js'
 import { HELPER_VERSION, TEST_VERSION } from './helpers/versions.js'

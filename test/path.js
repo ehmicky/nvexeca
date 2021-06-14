@@ -2,10 +2,10 @@ import { normalize } from 'path'
 
 import test from 'ava'
 import execa from 'execa'
+// eslint-disable-next-line node/no-missing-import, import/no-unresolved
+import nvexeca from 'nvexeca'
 import pathKey from 'path-key'
 import { each } from 'test-each'
-
-import nvexeca from '../src/main.js'
 
 import { HELPER_VERSION, TEST_VERSION } from './helpers/versions.js'
 
