@@ -54,7 +54,7 @@
     "jest-validate": "^27.0.2",
     "path-exists": "^4.0.0",
     "path-key": "^4.0.0",
-    "path-type": "^4.0.0"
+    "path-type": "^5.0.0"
   },
   "devDependencies": {
     "@ehmicky/dev-tasks": "^1.0.30",
