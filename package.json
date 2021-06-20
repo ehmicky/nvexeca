@@ -62,7 +62,7 @@
     "path-type": "^4.0.0"
   },
   "devDependencies": {
-    "@ehmicky/dev-tasks": "^1.0.29",
+    "@ehmicky/dev-tasks": "^1.0.30",
     "nyc": "^15.1.0",
     "semver": "^7.3.5",
     "test-each": "^2.0.1",
