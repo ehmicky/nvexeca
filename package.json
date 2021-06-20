@@ -60,7 +60,7 @@
     "@ehmicky/dev-tasks": "^1.0.33",
     "nyc": "^15.1.0",
     "semver": "^7.3.5",
-    "test-each": "^2.0.1",
+    "test-each": "^3.0.0",
     "yarn": "^1.22.1"
   },
   "engines": {
