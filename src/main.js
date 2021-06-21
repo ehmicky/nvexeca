@@ -5,7 +5,7 @@ import { copyBinaries } from './copy/main.js'
 import { getOpts } from './options.js'
 
 // Forwards command to another node instance of a specific `versionRange`
-// eslint-disable-next-line max-params, import/no-default-export
+// eslint-disable-next-line max-params
 export default async function nvexeca(versionRange, command, args, opts) {
   const {
     args: argsA,
