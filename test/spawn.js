@@ -1,7 +1,6 @@
 import { fileURLToPath } from 'url'
 
 import test from 'ava'
-// eslint-disable-next-line node/no-missing-import, import/no-unresolved
 import nvexeca from 'nvexeca'
 import pathKey from 'path-key'
 import { each } from 'test-each'

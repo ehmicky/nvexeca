@@ -3,7 +3,6 @@ import { fileURLToPath } from 'url'
 import test from 'ava'
 import del from 'del'
 import execa from 'execa'
-// eslint-disable-next-line node/no-missing-import, import/no-unresolved
 import nvexeca from 'nvexeca'
 
 import { run } from './helpers/copy.js'

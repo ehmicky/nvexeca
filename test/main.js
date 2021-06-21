@@ -1,7 +1,6 @@
 import { ChildProcess } from 'child_process'
 
 import test from 'ava'
-// eslint-disable-next-line node/no-missing-import, import/no-unresolved
 import nvexeca from 'nvexeca'
 import semver from 'semver'
 
