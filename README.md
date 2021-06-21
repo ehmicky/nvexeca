@@ -58,6 +58,10 @@ npm install nvexeca
 `node >=12.20.0` must be installed. However the command run by `nvexeca` can use
 any Node version (providing it is compatible with it).
 
+This package is an ES module and must be loaded using
+[an `import` or `import()` statement](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c),
+not `require()`.
+
 To use this as a CLI instead, please check
 [`nve`](https://github.com/ehmicky/nve).
 
