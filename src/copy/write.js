@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs'
 
 import del from 'del'
-import pathExists from 'path-exists'
+import { pathExists } from 'path-exists'
 
 // Copy binaries to the destination directory.
 // Directories contain their contents hash in their filename, i.e. if they
