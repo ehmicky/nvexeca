@@ -1,4 +1,4 @@
-import execa from 'execa'
+import { execa } from 'execa'
 import getNode from 'get-node'
 
 import { copyBinaries } from './copy/main.js'

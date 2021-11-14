@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'url'
 
 import test from 'ava'
-import execa from 'execa'
+import { execaCommand } from 'execa'
 import nvexeca from 'nvexeca'
 import pathKey from 'path-key'
 import { each } from 'test-each'
@@ -46,7 +46,7 @@ test.serial('Works with nyc as child', async (t) => {
 })
 
 test('Works with nyc as parent with node command', async (t) => {
-  const { stdout } = await execa.command(`nyc --silent -- node ${DEEP_FILE}`)
+  const { stdout } = await execaCommand(`nyc --silent -- node ${DEEP_FILE}`)
 
   t.is(stdout, `v${HELPER_VERSION}`)
 })

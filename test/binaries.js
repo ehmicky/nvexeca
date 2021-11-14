@@ -2,7 +2,7 @@ import { fileURLToPath } from 'url'
 
 import test from 'ava'
 import del from 'del'
-import execa from 'execa'
+import { execa } from 'execa'
 import nvexeca from 'nvexeca'
 
 import { run } from './helpers/copy.js'
