@@ -8,8 +8,8 @@ import { each } from 'test-each'
 
 import { HELPER_VERSION, TEST_VERSION } from './helpers/versions.js'
 
-const FORK_FILE = fileURLToPath(new URL('./helpers/fork.js', import.meta.url))
-const DEEP_FILE = fileURLToPath(new URL('./helpers/deep.js', import.meta.url))
+const FORK_FILE = fileURLToPath(new URL('helpers/fork.js', import.meta.url))
+const DEEP_FILE = fileURLToPath(new URL('helpers/deep.js', import.meta.url))
 
 each(
   [
@@ -52,11 +52,11 @@ test('Works with nyc as parent with node command', async (t) => {
 })
 
 test('Does not change process.execPath', async (t) => {
-  // eslint-disable-next-line no-restricted-globals, node/prefer-global/process
+  // eslint-disable-next-line no-restricted-globals, n/prefer-global/process
   const { execPath } = process
   await nvexeca(TEST_VERSION, 'node', ['--version'])
 
-  // eslint-disable-next-line no-restricted-globals, node/prefer-global/process
+  // eslint-disable-next-line no-restricted-globals, n/prefer-global/process
   const { execPath: newExecPath } = process
   t.is(newExecPath, execPath)
 })

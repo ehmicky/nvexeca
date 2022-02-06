@@ -8,12 +8,10 @@ import nvexeca from 'nvexeca'
 import { run } from './helpers/copy.js'
 import { HELPER_VERSION, TEST_VERSION } from './helpers/versions.js'
 
-const FIXTURES_DIR = fileURLToPath(
-  new URL('./helpers/fixtures', import.meta.url),
-)
+const FIXTURES_DIR = fileURLToPath(new URL('helpers/fixtures', import.meta.url))
 // `npm install -g` to `os.tmpdir()` throws a `chmod()` error, so we use a local
 // directory
-const TMP_DIR = fileURLToPath(new URL('./helpers/tmp', import.meta.url))
+const TMP_DIR = fileURLToPath(new URL('helpers/tmp', import.meta.url))
 
 test('Global binaries integration test', async (t) => {
   await execa('npm', ['install', '-g', `${FIXTURES_DIR}/package`], {
