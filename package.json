@@ -60,7 +60,7 @@
   "devDependencies": {
     "@ehmicky/dev-tasks": "^1.0.68",
     "nyc": "^15.1.0",
-    "semver": "^7.3.5",
+    "semver": "^7.3.6",
     "test-each": "^4.0.0",
     "yarn": "^1.22.17"
   },
