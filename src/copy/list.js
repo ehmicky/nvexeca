@@ -1,4 +1,4 @@
-import { promises as fs } from 'fs'
+import { readdir, stat, readFile } from 'fs/promises'
 import { delimiter, normalize } from 'path'
 
 import { isDirectory } from 'path-type'
@@ -26,7 +26,7 @@ const getSrcPaths = async function (srcBinDir) {
     return []
   }
 
-  const filenames = await fs.readdir(srcBinDirA)
+  const filenames = await readdir(srcBinDirA)
   const srcPaths = await Promise.all(
     filenames.map((filename) =>
       getSrcPath({ srcBinDir: srcBinDirA, filenames, filename }),
@@ -74,13 +74,13 @@ const isNodeBinary = async function (srcBinDir, filenames, bashFilename) {
   }
 
   const bashPath = `${srcBinDir}/${bashFilename}`
-  const bashStat = await fs.stat(bashPath)
+  const bashStat = await stat(bashPath)
 
   if (!bashStat.isFile()) {
     return false
   }
 
-  const bashContent = await fs.readFile(bashPath, 'utf8')
+  const bashContent = await readFile(bashPath, 'utf8')
   return NODE_DETECT_REGEXP.test(bashContent)
 }
 

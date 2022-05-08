@@ -1,4 +1,4 @@
-import { promises as fs } from 'fs'
+import { readFile } from 'fs/promises'
 
 // We need to slightly modify the binaries so that their file paths take into
 // account the new location. Moving the binaries should make the
@@ -8,7 +8,7 @@ import { promises as fs } from 'fs'
 // slightly different (https://github.com/npm/cli/blob/latest/bin/npm)
 export const getContent = async function ({ type, srcBinDir, filename }) {
   const path = `${srcBinDir}/${filename}`
-  const content = await fs.readFile(path, 'utf8')
+  const content = await readFile(path, 'utf8')
   const distContent = CONTENTS[type](srcBinDir, content)
   return distContent
 }
