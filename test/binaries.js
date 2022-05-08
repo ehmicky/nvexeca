@@ -1,7 +1,7 @@
+import { rm } from 'fs/promises'
 import { fileURLToPath } from 'url'
 
 import test from 'ava'
-import del from 'del'
 import { execa } from 'execa'
 import nvexeca from 'nvexeca'
 
@@ -27,7 +27,7 @@ test('Global binaries integration test', async (t) => {
     args: [],
   })
 
-  await del(TMP_DIR, { force: true })
+  await rm(TMP_DIR, { force: true, recursive: true })
 })
 
 test('npm', async (t) => {
