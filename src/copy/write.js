@@ -1,6 +1,5 @@
-import { mkdir, rename, writeFile } from 'fs/promises'
+import { mkdir, rename, writeFile, rm } from 'fs/promises'
 
-import del from 'del'
 import { pathExists } from 'path-exists'
 
 // Copy binaries to the destination directory.
@@ -25,7 +24,7 @@ export const writeBinaries = async function (srcPaths, distBinDir) {
     // This might fail if two concurrent processes are happening at exactly the
     // same time
   } catch {
-    await del(tmpBinDir, { force: true })
+    await rm(tmpBinDir, { force: true, recursive: true })
   }
 }
 
