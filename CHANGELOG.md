@@ -1,3 +1,14 @@
+# 8.0.0
+
+## Breaking changes
+
+- Minimal supported Node.js version is now `14.18.0`
+
+## Features
+
+- The [`cwd` option](https://github.com/ehmicky/nvexeca#cwd) can now be a
+  `file:` URL
+
 # 7.0.0
 
 ## Breaking changes
