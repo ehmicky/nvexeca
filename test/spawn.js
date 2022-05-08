@@ -1,5 +1,3 @@
-import { fileURLToPath } from 'url'
-
 import test from 'ava'
 import nvexeca from 'nvexeca'
 import pathKey from 'path-key'
@@ -7,7 +5,7 @@ import { each } from 'test-each'
 
 import { TEST_VERSION, HELPER_VERSION } from './helpers/versions.js'
 
-const FIXTURES_DIR = fileURLToPath(new URL('helpers/fixtures', import.meta.url))
+const FIXTURES_DIR_URL = new URL('helpers/fixtures/', import.meta.url)
 
 each(
   [
@@ -84,7 +82,7 @@ test('Works with npm scripts', async (t) => {
     HELPER_VERSION,
     'npm',
     ['--loglevel=silent', 'test'],
-    { cwd: `${FIXTURES_DIR}/package_scripts` },
+    { cwd: new URL('package_scripts', FIXTURES_DIR_URL) },
   )
   const { stdout: nveStdout } = await nveChildProcess
   t.is(nveStdout, `v${HELPER_VERSION}`)

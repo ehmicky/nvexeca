@@ -25,3 +25,13 @@ each(
     })
   },
 )
+
+each(
+  [{ cwd: '.' }, { cwd: new URL('.', import.meta.url) }],
+  ({ title }, opts) => {
+    test(`Valid arguments | ${title}`, async (t) => {
+      const { version } = await nvexeca(`v${TEST_VERSION}`, 'echo', opts)
+      t.is(version, TEST_VERSION)
+    })
+  },
+)

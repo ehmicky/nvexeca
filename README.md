@@ -179,7 +179,7 @@ allowed except `mips` and `mipsel`.
 
 #### cwd
 
-_Type_: `string`\
+_Type_: `string | URL`\
 _Default_: `process.cwd()`
 
 Current working directory of the child process.

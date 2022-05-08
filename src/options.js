@@ -2,7 +2,7 @@ import { arch as currentArch, cwd as getCwd } from 'process'
 
 import filterObj from 'filter-obj'
 import isPlainObj from 'is-plain-obj'
-import { validate } from 'jest-validate'
+import { validate, multipleValidOptions } from 'jest-validate'
 
 import { validateBasic } from './validate.js'
 
@@ -57,7 +57,7 @@ const EXAMPLE_OPTS = {
   // Passed to get-node
   arch: currentArch,
   // Passed to normalize-node-version
-  cwd: getCwd(),
+  cwd: multipleValidOptions(getCwd(), new URL('.', import.meta.url)),
   // Passed to all-node-versions
   fetch: true,
   // Passed to fetch-node-website
