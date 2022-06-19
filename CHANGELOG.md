@@ -1,3 +1,9 @@
+# 8.1.0
+
+## Features
+
+- Add TypeScript types
+
 # 8.0.0
 
 ## Breaking changes
