@@ -1,6 +1,7 @@
 <img src="https://raw.githubusercontent.com/ehmicky/design/main/nve/nve.svg?sanitize=true" width="400"/>
 
 [![Codecov](https://img.shields.io/codecov/c/github/ehmicky/nvexeca.svg?label=tested&logo=codecov)](https://codecov.io/gh/ehmicky/nvexeca)
+[![TypeScript](https://img.shields.io/badge/-typed-brightgreen?logo=typescript&colorA=gray)](/src/main.d.ts)
 [![Twitter](https://img.shields.io/badge/%E2%80%8B-twitter-brightgreen.svg?logo=twitter)](https://twitter.com/intent/follow?screen_name=ehmicky)
 [![Medium](https://img.shields.io/badge/%E2%80%8B-medium-brightgreen.svg?logo=medium)](https://medium.com/@ehmicky)
 
@@ -32,9 +33,6 @@ project or shell session**, please use [`nvm`](https://github.com/nvm-sh/nvm),
 instead.
 
 # Example
-
-<!-- Remove 'eslint-skip' once estree supports top-level await -->
-<!-- eslint-skip -->
 
 ```js
 import nvexeca from 'nvexeca'
@@ -68,14 +66,16 @@ To use this as a CLI instead, please check
 
 ## nvexeca(versionRange, command, args?, options?)
 
-_versionRange_: `string`\
-_command_: `string`\
-_args_: `string[]?`\
-_options_: `object?`\
-_Return value_: `Promise<object>`
+Executes `command ...args` with a specific Node.js `versionRange`.
 
-`versionRange` can be any [version range](https://github.com/npm/node-semver)
-such as `12`, `12.6.0` or `<12`, or one of the following aliases:
+### Arguments
+
+#### versionRange
+
+_Type_: `string`
+
+Any [version range](https://github.com/npm/node-semver) such as `12`, `12.6.0`
+or `<12`, or one of the following aliases:
 
 - `latest`: Latest available Node version
 - `lts`: Latest LTS Node version
@@ -93,30 +93,24 @@ such as `12`, `12.6.0` or `<12`, or one of the following aliases:
     [additional files](https://github.com/ehmicky/preferred-node-version/blob/main/README.md))
   - Defaults to the `global` version
 
-`command` is the file or command to execute. `args` are the arguments passed to
-it.
+#### command
 
-`command` must be compatible with the specific Node `versionRange`. For example
-`npm` is
+_Type_: `string`
+
+File or command to execute. Both global and local binaries can be executed.
+
+Must be compatible with the specific Node `versionRange`. For example `npm` is
 [only compatible with Node `>=6`](https://github.com/npm/cli#important).
 
-Both global and local binaries can be executed.
+#### args
 
-This returns a `Promise` which is resolved after the Node.js version has been
-cached locally (if it has not been cached yet). If you want to wait for the
-`command` to complete as well, you should `await` the returned `childProcess`.
+_Type_: `string[]?`
 
-<!-- Remove 'eslint-skip' once estree supports top-level await -->
-<!-- eslint-skip -->
-
-```js
-const { childProcess } = await nvexeca('8', 'node', ['--version'])
-const { exitCode, stdout, stderr } = await childProcess
-```
+Arguments to pass to the [`command`](#command).
 
 ### Options
 
-_Type_: `object`
+_Type_: `object?`
 
 All Execa options are available. Please refer to Execa for the list of
 [possible options](https://github.com/sindresorhus/execa#options).
@@ -190,10 +184,21 @@ also starts looking for a Node.js version file from this directory.
 
 _Type_: `Promise<object>`
 
+`Promise` resolved after the Node.js version has been cached locally (if it has
+not been cached yet).
+
+If you want to wait for the `command` to complete as well, you should `await`
+the returned `childProcess`.
+
+```js
+const { childProcess } = await nvexeca('8', 'node', ['--version'])
+const { exitCode, stdout, stderr } = await childProcess
+```
+
 #### childProcess
 
 _Type_:
-[`execaResult?`](https://github.com/sindresorhus/execa#execafile-arguments-options)
+[`ExecaChildProcess?`](https://github.com/sindresorhus/execa#execafile-arguments-options)
 
 [`childProcess` instance](https://nodejs.org/api/child_process.html#child_process_class_childprocess).
 It is also a `Promise` resolving or rejecting with a
