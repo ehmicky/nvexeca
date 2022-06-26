@@ -52,7 +52,7 @@
     "get-node": "^13.1.0",
     "global-cache-dir": "^4.1.0",
     "is-plain-obj": "^4.1.0",
-    "jest-validate": "^27.5.1",
+    "jest-validate": "^28.1.1",
     "path-exists": "^5.0.0",
     "path-key": "^4.0.0",
     "path-type": "^5.0.0"
