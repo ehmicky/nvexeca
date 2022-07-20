@@ -1,12 +1,13 @@
 import type { Stream } from 'stream'
 
-import nvexeca, { Options, ProcessInfo } from 'nvexeca'
 import {
   expectType,
   expectError,
   expectAssignable,
   expectNotAssignable,
 } from 'tsd'
+
+import nvexeca, { Options, ProcessInfo } from './main.js'
 
 await nvexeca('14', 'echo')
 expectError(nvexeca())
