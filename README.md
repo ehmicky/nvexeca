@@ -1,4 +1,7 @@
-<img src="https://raw.githubusercontent.com/ehmicky/design/main/nve/nve.svg?sanitize=true" width="400"/>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ehmicky/design/main/nve/nve_dark.svg"/>
+  <img alt="nvexeca logo" src="https://raw.githubusercontent.com/ehmicky/design/main/nve/nve.svg" width="500"/>
+</picture>
 
 [![Codecov](https://img.shields.io/codecov/c/github/ehmicky/nvexeca.svg?label=tested&logo=codecov)](https://codecov.io/gh/ehmicky/nvexeca)
 [![TypeScript](https://img.shields.io/badge/-typed-brightgreen?logo=typescript&colorA=gray)](/src/main.d.ts)
