@@ -1,6 +1,6 @@
 import { arch as currentArch, cwd as getCwd } from 'process'
 
-import filterObj from 'filter-obj'
+import { excludeKeys } from 'filter-obj'
 import isPlainObj from 'is-plain-obj'
 import { validate, multipleValidOptions } from 'jest-validate'
 
@@ -31,7 +31,7 @@ export const getOpts = function ({ versionRange, command, args, opts }) {
 
   validate(optsB, { exampleConfig: EXAMPLE_OPTS })
 
-  const optsC = filterObj(optsB, isDefined)
+  const optsC = excludeKeys(optsB, isUndefined)
   const optsD = { ...DEFAULT_OPTS, ...optsC }
 
   const { dry: dryA, getNodeOpts } = separateOpts(optsD)
@@ -63,8 +63,8 @@ const parseBasic = function ({
   return { args, opts }
 }
 
-const isDefined = function (key, value) {
-  return value !== undefined
+const isUndefined = function (key, value) {
+  return value === undefined
 }
 
 const DEFAULT_OPTS = {
