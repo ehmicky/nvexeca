@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "execa": "^6.1.0",
-    "filter-obj": "^4.0.0",
+    "filter-obj": "^5.0.0",
     "get-node": "^13.1.0",
     "global-cache-dir": "^4.1.0",
     "is-plain-obj": "^4.1.0",
