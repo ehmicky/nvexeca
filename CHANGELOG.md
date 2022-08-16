@@ -1,3 +1,9 @@
+# 8.2.0
+
+## Features
+
+- Reduce npm package size
+
 # 8.1.0
 
 ## Features
