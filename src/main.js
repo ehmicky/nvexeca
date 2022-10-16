@@ -12,12 +12,7 @@ export default async function nvexeca(versionRange, command, args, opts) {
     dry,
     getNodeOpts,
     execaOptions,
-  } = getOpts({
-    versionRange,
-    command,
-    args,
-    opts,
-  })
+  } = getOpts({ versionRange, command, args, opts })
 
   const [{ path: nodePath, version }, execaOptionsA] = await Promise.all([
     getNode(versionRange, getNodeOpts),

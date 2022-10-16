@@ -1,8 +1,4 @@
-import { arch as currentArch, cwd as getCwd } from 'process'
-
-import { excludeKeys } from 'filter-obj'
 import isPlainObj from 'is-plain-obj'
-import { validate, multipleValidOptions } from 'jest-validate'
 
 import { validateBasic } from './validate.js'
 
@@ -13,15 +9,14 @@ export const getOpts = function ({ versionRange, command, args, opts }) {
   validateBasic({ versionRange, command, args: argsA, opts: optsA })
 
   const {
-    dry,
+    dry = false,
     progress,
     fetch: fetchOpt,
     mirror,
     arch,
     ...execaOptions
   } = optsA
-  const optsB = {
-    dry,
+  const getNodeOpts = {
     progress,
     fetch: fetchOpt,
     mirror,
@@ -29,24 +24,11 @@ export const getOpts = function ({ versionRange, command, args, opts }) {
     cwd: execaOptions.cwd,
   }
 
-  validate(optsB, { exampleConfig: EXAMPLE_OPTS })
+  if (typeof dry !== 'boolean') {
+    throw new TypeError(`Option "dry" must be a boolean: ${dry}`)
+  }
 
-  const optsC = excludeKeys(optsB, isUndefined)
-  const optsD = { ...DEFAULT_OPTS, ...optsC }
-
-  const { dry: dryA, getNodeOpts } = separateOpts(optsD)
-  return { args: argsA, dry: dryA, getNodeOpts, execaOptions }
-}
-
-const separateOpts = function ({
-  dry,
-  progress,
-  fetch: fetchOpt,
-  mirror,
-  arch,
-  cwd,
-}) {
-  return { dry, getNodeOpts: { progress, fetch: fetchOpt, mirror, arch, cwd } }
+  return { args: argsA, dry, getNodeOpts, execaOptions }
 }
 
 // `args` and `opts` are both optional
@@ -56,31 +38,7 @@ const parseBasic = function ({
   args = [],
   opts = {},
 }) {
-  if (oOpts === undefined && isPlainObj(oArgs)) {
-    return { args: [], opts: oArgs }
-  }
-
-  return { args, opts }
-}
-
-const isUndefined = function (key, value) {
-  return value === undefined
-}
-
-const DEFAULT_OPTS = {
-  dry: false,
-  // Passed to fetch-node-website
-  progress: false,
-}
-
-const EXAMPLE_OPTS = {
-  ...DEFAULT_OPTS,
-  // Passed to get-node
-  arch: currentArch,
-  // Passed to normalize-node-version
-  cwd: multipleValidOptions(getCwd(), new URL('.', import.meta.url)),
-  // Passed to all-node-versions
-  fetch: true,
-  // Passed to fetch-node-website
-  mirror: 'https://nodejs.org/dist',
+  return oOpts === undefined && isPlainObj(oArgs)
+    ? { args: [], opts: oArgs }
+    : { args, opts }
 }
