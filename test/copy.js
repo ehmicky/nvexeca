@@ -1,6 +1,6 @@
-import { join } from 'path'
-import { platform } from 'process'
-import { fileURLToPath } from 'url'
+import { join } from 'node:path'
+import { platform } from 'node:process'
+import { fileURLToPath } from 'node:url'
 
 import test from 'ava'
 import pathKey from 'path-key'

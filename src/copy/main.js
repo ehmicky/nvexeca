@@ -1,4 +1,4 @@
-import { platform } from 'process'
+import { platform } from 'node:process'
 
 import { listSrcPaths } from './list.js'
 import { getDistBinDir } from './output.js'

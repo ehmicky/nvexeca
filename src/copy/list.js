@@ -1,5 +1,5 @@
-import { readdir, stat, readFile } from 'fs/promises'
-import { delimiter, normalize } from 'path'
+import { readdir, stat, readFile } from 'node:fs/promises'
+import { delimiter, normalize } from 'node:path'
 
 import { isDirectory } from 'path-type'
 

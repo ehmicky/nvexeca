@@ -1,4 +1,4 @@
-import { mkdir, rename, writeFile, rm } from 'fs/promises'
+import { mkdir, rename, writeFile, rm } from 'node:fs/promises'
 
 import { pathExists } from 'path-exists'
 

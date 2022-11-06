@@ -1,5 +1,5 @@
-import { rm } from 'fs/promises'
-import { fileURLToPath } from 'url'
+import { rm } from 'node:fs/promises'
+import { fileURLToPath } from 'node:url'
 
 import test from 'ava'
 import { execa } from 'execa'

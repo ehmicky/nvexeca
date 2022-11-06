@@ -1,4 +1,4 @@
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from 'node:url'
 
 import test from 'ava'
 import { execaCommand } from 'execa'

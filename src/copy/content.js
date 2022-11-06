@@ -1,4 +1,4 @@
-import { readFile } from 'fs/promises'
+import { readFile } from 'node:fs/promises'
 
 // We need to slightly modify the binaries so that their file paths take into
 // account the new location. Moving the binaries should make the

@@ -1,4 +1,4 @@
-import { version } from 'process'
+import { version } from 'node:process'
 
 import nvexeca from 'nvexeca'
 
