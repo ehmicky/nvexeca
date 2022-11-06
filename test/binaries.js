@@ -3,10 +3,9 @@ import { fileURLToPath } from 'node:url'
 
 import test from 'ava'
 import { execa } from 'execa'
-import nvexeca from 'nvexeca'
 
 import { run } from './helpers/copy.js'
-import { HELPER_VERSION, TEST_VERSION } from './helpers/versions.js'
+import { TEST_VERSION } from './helpers/versions.js'
 
 const FIXTURES_DIR = fileURLToPath(new URL('helpers/fixtures', import.meta.url))
 // `npm install -g` to `os.tmpdir()` throws a `chmod()` error, so we use a local
@@ -28,15 +27,4 @@ test('Global binaries integration test', async (t) => {
   })
 
   await rm(TMP_DIR, { force: true, recursive: true })
-})
-
-test('npm', async (t) => {
-  const { childProcess } = await nvexeca(HELPER_VERSION, 'npm', [
-    'bin',
-    '--loglevel',
-    'info',
-  ])
-  const { stderr } = await childProcess
-
-  t.true(stderr.includes(`node@v${HELPER_VERSION}`))
 })
