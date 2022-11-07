@@ -7,7 +7,7 @@ import {
   expectNotAssignable,
 } from 'tsd'
 
-import nvexeca, { Options, ProcessInfo } from './main.js'
+import nvexeca, { Options, ProcessInfo } from 'nvexeca'
 
 await nvexeca('14', 'echo')
 expectError(nvexeca())
