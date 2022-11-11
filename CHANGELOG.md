@@ -1,3 +1,9 @@
+# 8.4.0
+
+## Features
+
+- Improve tree-shaking support
+
 # 8.3.0
 
 ## Features
