@@ -10,4 +10,4 @@ node_modules
 !.github/
 /coverage
 /build
-!/test/fixtures/**/node_modules
+!/src/fixtures/**/node_modules
