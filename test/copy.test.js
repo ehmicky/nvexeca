@@ -12,7 +12,7 @@ import { HELPER_VERSION } from './helpers/versions.test.js'
 const FORK_FILE = fileURLToPath(
   new URL('helpers/copy_fork.test.js', import.meta.url),
 )
-const FIXTURES_DIR = fileURLToPath(new URL('helpers/fixtures', import.meta.url))
+const FIXTURES_DIR = fileURLToPath(new URL('fixtures', import.meta.url))
 const INVALID_DIR = fileURLToPath(new URL('../invalid', import.meta.url))
 
 const PATH = pathKey()

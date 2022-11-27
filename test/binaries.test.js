@@ -7,7 +7,7 @@ import { execa } from 'execa'
 import { run } from './helpers/copy.test.js'
 import { TEST_VERSION } from './helpers/versions.test.js'
 
-const FIXTURES_DIR = fileURLToPath(new URL('helpers/fixtures', import.meta.url))
+const FIXTURES_DIR = fileURLToPath(new URL('fixtures', import.meta.url))
 // `npm install -g` to `os.tmpdir()` throws a `chmod()` error, so we use a local
 // directory
 const TMP_DIR = fileURLToPath(new URL('helpers/tmp', import.meta.url))

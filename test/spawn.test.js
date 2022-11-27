@@ -5,7 +5,7 @@ import { each } from 'test-each'
 
 import { TEST_VERSION, HELPER_VERSION } from './helpers/versions.test.js'
 
-const FIXTURES_DIR_URL = new URL('helpers/fixtures/', import.meta.url)
+const FIXTURES_DIR_URL = new URL('fixtures/', import.meta.url)
 
 each(
   [
