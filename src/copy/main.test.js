@@ -6,14 +6,14 @@ import test from 'ava'
 import pathKey from 'path-key'
 import { each } from 'test-each'
 
-import { runPrint, run, runThrows } from './helpers/copy.test.js'
-import { HELPER_VERSION } from './helpers/versions.test.js'
+import { runPrint, run, runThrows } from '../helpers/copy.test.js'
+import { HELPER_VERSION } from '../helpers/versions.test.js'
 
 const FORK_FILE = fileURLToPath(
-  new URL('helpers/copy_fork.test.js', import.meta.url),
+  new URL('../helpers/copy_fork.test.js', import.meta.url),
 )
-const FIXTURES_DIR = fileURLToPath(new URL('fixtures', import.meta.url))
-const INVALID_DIR = fileURLToPath(new URL('../invalid', import.meta.url))
+const FIXTURES_DIR = fileURLToPath(new URL('../fixtures', import.meta.url))
+const INVALID_DIR = fileURLToPath(new URL('../../invalid', import.meta.url))
 
 const PATH = pathKey()
 
