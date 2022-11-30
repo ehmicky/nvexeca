@@ -6,10 +6,14 @@ import nvexeca from 'nvexeca'
 import pathKey from 'path-key'
 import { each } from 'test-each'
 
-import { HELPER_VERSION, TEST_VERSION } from './helpers/versions.js'
+import { HELPER_VERSION, TEST_VERSION } from './helpers/versions.test.js'
 
-const FORK_FILE = fileURLToPath(new URL('helpers/fork.js', import.meta.url))
-const DEEP_FILE = fileURLToPath(new URL('helpers/deep.js', import.meta.url))
+const FORK_FILE = fileURLToPath(
+  new URL('helpers/fork.test.js', import.meta.url),
+)
+const DEEP_FILE = fileURLToPath(
+  new URL('helpers/deep.test.js', import.meta.url),
+)
 
 each(
   [

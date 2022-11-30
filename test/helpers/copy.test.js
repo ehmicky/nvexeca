@@ -4,7 +4,7 @@ import { env } from 'node:process'
 import nvexeca from 'nvexeca'
 import pathKey from 'path-key'
 
-import { TEST_VERSION } from './versions.js'
+import { TEST_VERSION } from './versions.test.js'
 
 const PATH = pathKey()
 

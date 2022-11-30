@@ -4,7 +4,7 @@ import test from 'ava'
 import nvexeca from 'nvexeca'
 import semver from 'semver'
 
-import { TEST_VERSION, ALIAS_VERSION } from './helpers/versions.js'
+import { TEST_VERSION, ALIAS_VERSION } from './helpers/versions.test.js'
 
 test('Return normalized Node.js version', async (t) => {
   const { version } = await nvexeca(`v${TEST_VERSION}`, 'node', ['--version'])

@@ -2,7 +2,7 @@ import test from 'ava'
 import nvexeca from 'nvexeca'
 import { each } from 'test-each'
 
-import { TEST_VERSION, INVALID_VERSION } from './helpers/versions.js'
+import { TEST_VERSION, INVALID_VERSION } from './helpers/versions.test.js'
 
 each(
   [

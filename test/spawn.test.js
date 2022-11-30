@@ -3,7 +3,7 @@ import nvexeca from 'nvexeca'
 import pathKey from 'path-key'
 import { each } from 'test-each'
 
-import { TEST_VERSION, HELPER_VERSION } from './helpers/versions.js'
+import { TEST_VERSION, HELPER_VERSION } from './helpers/versions.test.js'
 
 const FIXTURES_DIR_URL = new URL('helpers/fixtures/', import.meta.url)
 

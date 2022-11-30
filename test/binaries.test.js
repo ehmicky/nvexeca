@@ -4,8 +4,8 @@ import { fileURLToPath } from 'node:url'
 import test from 'ava'
 import { execa } from 'execa'
 
-import { run } from './helpers/copy.js'
-import { TEST_VERSION } from './helpers/versions.js'
+import { run } from './helpers/copy.test.js'
+import { TEST_VERSION } from './helpers/versions.test.js'
 
 const FIXTURES_DIR = fileURLToPath(new URL('helpers/fixtures', import.meta.url))
 // `npm install -g` to `os.tmpdir()` throws a `chmod()` error, so we use a local
