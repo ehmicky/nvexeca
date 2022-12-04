@@ -6,21 +6,21 @@ import nvexeca, { type Options, type ProcessInfo } from 'nvexeca'
 
 await nvexeca('14', 'echo')
 // @ts-expect-error
-nvexeca()
+await nvexeca()
 // @ts-expect-error
-nvexeca('14')
+await nvexeca('14')
 const NODE_VERSION = 14
 // @ts-expect-error
-nvexeca(NODE_VERSION, 'echo')
+await nvexeca(NODE_VERSION, 'echo')
 // @ts-expect-error
-nvexeca('14', true)
+await nvexeca('14', true)
 
 await nvexeca('14', 'echo', [])
 await nvexeca('14', 'echo', ['arg'])
 // @ts-expect-error
-nvexeca('14', 'echo', true)
+await nvexeca('14', 'echo', true)
 // @ts-expect-error
-nvexeca('14', 'echo', [true])
+await nvexeca('14', 'echo', [true])
 
 await nvexeca('14', 'echo', {})
 await nvexeca('14', 'echo', [], {})
@@ -54,7 +54,7 @@ await nvexeca('14', 'echo', { fetch: true })
 await nvexeca('14', 'echo', { fetch: undefined })
 expectAssignable<Options>({ fetch: true })
 // @ts-expect-error
-nvexeca('14', 'echo', { fetch: 'true' })
+await nvexeca('14', 'echo', { fetch: 'true' })
 
 await nvexeca('14', 'echo', { arch: 'x64' })
 expectAssignable<Options>({ arch: 'x64' })

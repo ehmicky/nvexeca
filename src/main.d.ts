@@ -1,7 +1,7 @@
 import type { ExecaChildProcess, Options as ExecaOptions } from 'execa'
 import type { Options as GetNodeOptions, SemverVersion } from 'get-node'
 
-export type ProcessInfo = {
+export interface ProcessInfo {
   /**
    * [`childProcess` instance](https://nodejs.org/api/child_process.html#child_process_class_childprocess).
    * It is also a `Promise` resolving or rejecting with a
