@@ -1,16 +1,17 @@
-import type { Stream } from 'stream'
+import type { Stream } from 'node:stream'
 
 import { expectType, expectAssignable, expectNotAssignable } from 'tsd'
 
-import nvexeca, { Options, ProcessInfo } from 'nvexeca'
+import nvexeca, { type Options, type ProcessInfo } from 'nvexeca'
 
 await nvexeca('14', 'echo')
 // @ts-expect-error
 nvexeca()
 // @ts-expect-error
 nvexeca('14')
+const NODE_VERSION = 14
 // @ts-expect-error
-nvexeca(14, 'echo')
+nvexeca(NODE_VERSION, 'echo')
 // @ts-expect-error
 nvexeca('14', true)
 
