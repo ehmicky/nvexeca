@@ -120,7 +120,6 @@ export type Options =
  * console.log(stdout) // v8.16.2
  * ```
  */
-// eslint-disable-next-line import/export
 export default function nvexeca(
   /**
    * Any [version range](https://github.com/npm/node-semver)
@@ -159,7 +158,6 @@ export default function nvexeca(
   options?: Options,
 ): Promise<ProcessInfo>
 
-// eslint-disable-next-line import/export
 export default function nvexeca(
   versionRange: string,
   command: string,
