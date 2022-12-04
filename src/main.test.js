@@ -213,7 +213,8 @@ test('Can use cwd options for local binaries', async (t) => {
   t.not(exitCode, 0)
 })
 
-test('Can run in shell mode', async (t) => {
+// Use `serial` to avoid "too many file open" on Windows
+test.serial('Can run in shell mode', async (t) => {
   const { childProcess } = await nvexeca(
     TEST_VERSION,
     'node --version && node --version',
@@ -233,7 +234,7 @@ const runWithoutPath = function (execaOptions) {
   })
 }
 
-test('Works with npm scripts', async (t) => {
+test.serial('Works with npm scripts', async (t) => {
   const { childProcess: nveChildProcess } = await nvexeca(
     HELPER_VERSION,
     'npm',
