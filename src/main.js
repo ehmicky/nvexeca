@@ -6,7 +6,7 @@ import { getOpts } from './options.js'
 
 // Forwards command to another node instance of a specific `versionRange`
 // eslint-disable-next-line max-params
-export default async function nvexeca(versionRange, command, args, opts) {
+const nvexeca = async (versionRange, command, args, opts) => {
   const {
     args: argsA,
     dry,
@@ -38,6 +38,8 @@ export default async function nvexeca(versionRange, command, args, opts) {
   }
 }
 
+export default nvexeca
+
 // Some libraries like `spawn-wrap` monkey patch `child_process.spawn()` to
 // modify `$PATH` and prepend their own `node` wrapper. We fix it by using the
 // `node` absolute path instead of relying on `$PATH`.
@@ -45,9 +47,8 @@ export default async function nvexeca(versionRange, command, args, opts) {
 //  - with nested child processes
 //  - with binaries
 // This is also slightly faster as it does not require any `$PATH` lookup.
-const getCommand = function (nodePath, command) {
-  return command === 'node' ? nodePath : command
-}
+const getCommand = (nodePath, command) =>
+  command === 'node' ? nodePath : command
 
 // Forward arguments to another node binary located at `nodePath`.
 // Fix `$PATH` so that `node` points to the right version.
@@ -56,11 +57,13 @@ const getCommand = function (nodePath, command) {
 //  - binaries work, even on Windows
 // We use `execa` `execPath` for this.
 // This option requires `preferLocal: true`
-const getExecaOptions = function (nodePath, execaOptions) {
-  return { ...execaOptions, execPath: nodePath, preferLocal: true }
-}
+const getExecaOptions = (nodePath, execaOptions) => ({
+  ...execaOptions,
+  execPath: nodePath,
+  preferLocal: true,
+})
 
-const startProcess = function ({ command, args, execaOptions, dry }) {
+const startProcess = ({ command, args, execaOptions, dry }) => {
   if (dry) {
     return
   }

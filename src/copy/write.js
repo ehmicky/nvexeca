@@ -9,7 +9,7 @@ import { pathExists } from 'path-exists'
 // name. We do this to support concurrent calls. Otherwise a concurrent process
 // might consider binaries already written based on their directory existing,
 // even though they are being written. This would lead to `ETXTBUSY` errors.
-export const writeBinaries = async function (srcPaths, distBinDir) {
+export const writeBinaries = async (srcPaths, distBinDir) => {
   if (await pathExists(distBinDir)) {
     return
   }
@@ -28,12 +28,12 @@ export const writeBinaries = async function (srcPaths, distBinDir) {
   }
 }
 
-const getTmpBinDir = function (distBinDir) {
+const getTmpBinDir = (distBinDir) => {
   const randomId = String(Math.random()).replace('.', '')
   return `${distBinDir}-${randomId}`
 }
 
-const writeBinary = async function ({ filename, content }, tmpBinDir) {
+const writeBinary = async ({ filename, content }, tmpBinDir) => {
   const tmpPath = `${tmpBinDir}/${filename}`
   await writeFile(tmpPath, content, { mode: DIST_MODE })
 }

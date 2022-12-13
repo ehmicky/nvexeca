@@ -18,7 +18,7 @@ import { writeBinaries } from './write.js'
 // `node.exe`.
 // The fix is npm-specific. Yarn does not have that issue. Although it also
 // checks for a sibling `node.exe`, there is never such a file in practice.
-export const copyBinaries = async function (execaOptions) {
+export const copyBinaries = async (execaOptions) => {
   if (platform !== 'win32') {
     return execaOptions
   }
@@ -39,12 +39,7 @@ export const copyBinaries = async function (execaOptions) {
   return applyCopy({ execaOptions, pathName, pathValue, srcPaths })
 }
 
-const applyCopy = async function ({
-  execaOptions,
-  pathName,
-  pathValue,
-  srcPaths,
-}) {
+const applyCopy = async ({ execaOptions, pathName, pathValue, srcPaths }) => {
   const distBinDir = await getDistBinDir(srcPaths)
   await writeBinaries(srcPaths, distBinDir)
 

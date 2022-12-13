@@ -1,7 +1,7 @@
 import isPlainObj from 'is-plain-obj'
 
 // Validate input parameters
-export const validateBasic = function ({ versionRange, command, args, opts }) {
+export const validateBasic = ({ versionRange, command, args, opts }) => {
   validateRange(versionRange)
 
   if (typeof command !== 'string') {
@@ -17,16 +17,12 @@ export const validateBasic = function ({ versionRange, command, args, opts }) {
   }
 }
 
-const validateRange = function (versionRange) {
+const validateRange = (versionRange) => {
   if (typeof versionRange !== 'string') {
     throw new TypeError(`Invalid version: ${versionRange}`)
   }
 }
 
-const isStringArray = function (args) {
-  return Array.isArray(args) && args.every(isString)
-}
+const isStringArray = (args) => Array.isArray(args) && args.every(isString)
 
-const isString = function (arg) {
-  return typeof arg === 'string'
-}
+const isString = (arg) => typeof arg === 'string'

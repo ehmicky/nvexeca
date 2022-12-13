@@ -228,12 +228,11 @@ test.serial('Can run in shell mode', async (t) => {
   t.is(stdout.replace('\r', ''), `v${TEST_VERSION}\nv${TEST_VERSION}`)
 })
 
-const runWithoutPath = function (execaOptions) {
-  return nvexeca(HELPER_VERSION, 'ava', ['--version'], {
+const runWithoutPath = (execaOptions) =>
+  nvexeca(HELPER_VERSION, 'ava', ['--version'], {
     env: { [pathKey()]: '' },
     ...execaOptions,
   })
-}
 
 test.serial('Works with npm scripts', async (t) => {
   const { childProcess: nveChildProcess } = await nvexeca(

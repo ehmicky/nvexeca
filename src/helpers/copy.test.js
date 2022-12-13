@@ -9,7 +9,7 @@ import nvexeca from 'nvexeca'
 
 const PATH = pathKey()
 
-export const runPrint = async function (t, pathParts, execaOptions) {
+export const runPrint = async (t, pathParts, execaOptions) => {
   await run({
     t,
     pathParts,
@@ -25,14 +25,14 @@ export const runPrint = async function (t, pathParts, execaOptions) {
 // `process.version`) output is showing the correct Node.js version.
 // This is used to check that Windows binaries are using the right Node.js
 // version.
-export const run = async function ({
+export const run = async ({
   t,
   pathParts,
   execaOptions,
   version,
   command,
   args,
-}) {
+}) => {
   const pathEnv = [...pathParts, env[PATH]].join(delimiter)
   const { childProcess } = await nvexeca(version, command, args, {
     env: { [PATH]: pathEnv },
@@ -43,7 +43,7 @@ export const run = async function ({
   t.is(stdout, `v${version}`)
 }
 
-export const runThrows = async function (t, execaOptions) {
+export const runThrows = async (t, execaOptions) => {
   const { childProcess } = await nvexeca(
     TEST_VERSION,
     'printversion',

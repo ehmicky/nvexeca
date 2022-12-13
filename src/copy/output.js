@@ -10,24 +10,22 @@ import globalCacheDir from 'global-cache-dir'
 // For performance reasons and better concurrent behavior, two `nvexeca()` calls
 // with the same directory contents share the same directory. We do this by
 // hashing that contents and including the hash in the directory filename.
-export const getDistBinDir = async function (srcPaths) {
+export const getDistBinDir = async (srcPaths) => {
   const hash = getHash(srcPaths)
   const output = await getOutput()
   const distBinDir = join(output, BIN_DIR_PARENT, `${hash}${BIN_DIR_SUFFIX}`)
   return distBinDir
 }
 
-const getHash = function (srcPaths) {
+const getHash = (srcPaths) => {
   const contents = srcPaths.map(getSrcPathHash).join('\n')
   const hash = computeSha(contents)
   return hash
 }
 
-const getSrcPathHash = function ({ filename, content }) {
-  return `${filename}\n${content}`
-}
+const getSrcPathHash = ({ filename, content }) => `${filename}\n${content}`
 
-const computeSha = function (contents) {
+const computeSha = (contents) => {
   const hashStream = createHash('sha256')
   hashStream.update(contents)
   const hash = hashStream.digest('hex')
@@ -35,17 +33,14 @@ const computeSha = function (contents) {
 }
 
 // Retrieve cache directory
-export const getOutput = function () {
-  return globalCacheDir(CACHE_DIR)
-}
+export const getOutput = () => globalCacheDir(CACHE_DIR)
 
 const CACHE_DIR = 'nve'
 
 // If the output directory is in the PATH, we ignore it.
 // This happens on recursive calls.
-export const isOutputDir = function (dir) {
-  return dir.replace(TRAILING_SLASH_REGEXP, '').endsWith(BIN_DIR_SUFFIX)
-}
+export const isOutputDir = (dir) =>
+  dir.replace(TRAILING_SLASH_REGEXP, '').endsWith(BIN_DIR_SUFFIX)
 
 const TRAILING_SLASH_REGEXP = /[/\\]$/u
 
