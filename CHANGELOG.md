@@ -1,3 +1,9 @@
+# 8.5.0
+
+## Features
+
+- Upgrade Execa
+
 # 8.4.0
 
 ## Features
