@@ -64,7 +64,7 @@
     "@types/node": "^18.15.3",
     "nyc": "^15.1.0",
     "semver": "^7.5.0",
-    "test-each": "^5.7.1",
+    "test-each": "^6.0.0",
     "yarn": "^1.22.19"
   },
   "engines": {
