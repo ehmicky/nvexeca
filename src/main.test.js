@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 
 import test from 'ava'
 import { execa, execaCommand } from 'execa'
+import nvexeca from 'nvexeca'
 import pathKey from 'path-key'
 import semver from 'semver'
 import { each } from 'test-each'
@@ -15,8 +16,7 @@ import {
   HELPER_VERSION,
 } from './helpers/versions.test.js'
 
-// eslint-disable-next-line import/max-dependencies
-import nvexeca from 'nvexeca'
+ 
 
 const FIXTURES_DIR_URL = new URL('fixtures/', import.meta.url)
 const FIXTURES_DIR = fileURLToPath(FIXTURES_DIR_URL)

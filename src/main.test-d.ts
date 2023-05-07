@@ -1,8 +1,8 @@
 import type { Stream } from 'node:stream'
 
+import nvexeca, { type Options, type ProcessInfo } from 'nvexeca'
 import { expectType, expectAssignable, expectNotAssignable } from 'tsd'
 
-import nvexeca, { type Options, type ProcessInfo } from 'nvexeca'
 
 await nvexeca('14', 'echo')
 // @ts-expect-error
@@ -87,7 +87,7 @@ const {
 
 expectAssignable<Stream | null | undefined>(childProcess?.stdout)
 expectAssignable<Stream | null | undefined>(childProcess?.all)
-const { isCanceled, exitCode } = await childProcess!
+const { isCanceled, exitCode } = await childProcess
 expectType<boolean>(isCanceled)
 expectType<number>(exitCode)
 

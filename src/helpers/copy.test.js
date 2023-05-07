@@ -1,11 +1,11 @@
 import { delimiter } from 'node:path'
 import { env } from 'node:process'
 
+import nvexeca from 'nvexeca'
 import pathKey from 'path-key'
 
 import { TEST_VERSION } from './versions.test.js'
 
-import nvexeca from 'nvexeca'
 
 const PATH = pathKey()
 
