@@ -14,21 +14,19 @@ export const getContent = async ({ type, srcBinDir, filename }) => {
 }
 
 const getCmdContent = (srcBinDir, content) => {
-  const srcBinDirA = srcBinDir.replace(SLASH_REGEXP, '\\')
+  const srcBinDirA = srcBinDir.replaceAll('/', '\\')
   return content.replace(CMD_REGEXP, `${srcBinDirA}$2`)
 }
 
-const SLASH_REGEXP = /\//gu
 // %%F|%~dp0 is used in npm|npx `cmd` binaries, %dp0% in other binaries
 const CMD_REGEXP = /(%%F|%~dp0|%dp0%)(\\node_modules)/gu
 
 // This also works with the Powershell file
 const getShellContent = (srcBinDir, content) => {
-  const srcBinDirA = srcBinDir.replace(BACKSLASH_REGEXP, '/')
+  const srcBinDirA = srcBinDir.replace('\\', '/')
   return content.replace(SHELL_REGEXP, `${srcBinDirA}$1`)
 }
 
-const BACKSLASH_REGEXP = /\\/gu
 // `CLI_BASEDIR|NPM_PREFIX` is used in npm|npx shell binaries, $basedir in other
 // shell binaries and in Powershell
 const SHELL_REGEXP = /(\$basedir|\$CLI_BASEDIR|\$NPM_PREFIX)(\/node_modules)/gu
