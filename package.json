@@ -63,7 +63,7 @@
     "@ehmicky/dev-tasks": "^2.0.74",
     "@types/node": "^18.15.3",
     "nyc": "^15.1.0",
-    "semver": "^7.3.8",
+    "semver": "^7.5.0",
     "test-each": "^5.7.1",
     "yarn": "^1.22.19"
   },
