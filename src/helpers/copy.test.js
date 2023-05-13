@@ -6,7 +6,6 @@ import pathKey from 'path-key'
 
 import { TEST_VERSION } from './versions.test.js'
 
-
 const PATH = pathKey()
 
 export const runPrint = async (t, pathParts, execaOptions) => {

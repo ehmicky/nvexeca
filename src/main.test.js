@@ -16,8 +16,6 @@ import {
   HELPER_VERSION,
 } from './helpers/versions.test.js'
 
- 
-
 const FIXTURES_DIR_URL = new URL('fixtures/', import.meta.url)
 const FIXTURES_DIR = fileURLToPath(FIXTURES_DIR_URL)
 // `npm install -g` to `os.tmpdir()` throws a `chmod()` error, so we use a local

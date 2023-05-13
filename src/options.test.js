@@ -4,7 +4,6 @@ import { each } from 'test-each'
 
 import { TEST_VERSION, INVALID_VERSION } from './helpers/versions.test.js'
 
-
 each(
   [
     [],

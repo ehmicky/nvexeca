@@ -3,7 +3,6 @@ import type { Stream } from 'node:stream'
 import nvexeca, { type Options, type ProcessInfo } from 'nvexeca'
 import { expectType, expectAssignable, expectNotAssignable } from 'tsd'
 
-
 await nvexeca('14', 'echo')
 // @ts-expect-error
 await nvexeca()
