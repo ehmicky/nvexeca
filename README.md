@@ -56,7 +56,7 @@ console.log(stdout) // v8.16.2
 npm install nvexeca
 ```
 
-`node >=14.18.0` must be installed. However the command run by `nvexeca` can use
+`node >=16.17.0` must be installed. However the command run by `nvexeca` can use
 any Node version (providing it is compatible with it).
 
 This package is an ES module and must be loaded using
