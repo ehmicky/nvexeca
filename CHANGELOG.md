@@ -1,3 +1,19 @@
+# 9.2.0
+
+## Features
+
+- The Node.js version can now be specified as a file path to a
+  [`.nvmrc`](https://github.com/nvm-sh/nvm#nvmrc),
+  [`package.json` (`engines.node` field)](https://docs.npmjs.com/files/package.json#engines)
+  or
+  [similar files](https://github.com/ehmicky/preferred-node-version/blob/main/README.md).
+
+```js
+const { childProcess, version } = await nvexeca('/path/to/.nvmrc', 'node', [
+  '--version',
+])
+```
+
 # 9.1.1
 
 ## Bug fixes

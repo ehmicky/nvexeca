@@ -46,7 +46,16 @@ test('Return non-normalized Node.js version', async (t) => {
 
 test('Can use aliases', async (t) => {
   const { version } = await nvexeca(ALIAS_VERSION, 'node', ['--version'])
+
   t.is(semver.clean(version), version)
+})
+
+test('Can use file paths', async (t) => {
+  const { version } = await nvexeca(`${FIXTURES_DIR}/nvmrc/.nvmrc`, 'node', [
+    '--version',
+  ])
+
+  t.is(version, TEST_VERSION)
 })
 
 test('Can omit arguments but specify options', async (t) => {
