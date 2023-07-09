@@ -1,6 +1,6 @@
 {
   "name": "nvexeca",
-  "version": "9.1.1",
+  "version": "9.2.0",
   "type": "module",
   "exports": {
     "types": "./build/src/main.d.ts",
