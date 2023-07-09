@@ -14,6 +14,7 @@ export const getOpts = ({ versionRange, command, args, opts }) => {
     fetch: fetchOpt,
     mirror,
     arch,
+    signal,
     ...execaOptions
   } = optsA
   const getNodeOpts = {
@@ -21,6 +22,7 @@ export const getOpts = ({ versionRange, command, args, opts }) => {
     fetch: fetchOpt,
     mirror,
     arch,
+    signal,
     cwd: execaOptions.cwd,
   }
 

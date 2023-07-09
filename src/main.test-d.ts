@@ -50,6 +50,11 @@ expectAssignable<Options>({ mirror: 'https://example.com' })
 // @ts-expect-error
 await nvexeca('14', 'echo', { mirror: true })
 
+await nvexeca('14', 'echo', { signal: AbortSignal.abort() })
+expectAssignable<Options>({ signal: AbortSignal.abort() })
+// @ts-expect-error
+await nvexeca('14', 'echo', { signal: 'signal' })
+
 await nvexeca('14', 'echo', { fetch: true })
 await nvexeca('14', 'echo', { fetch: undefined })
 expectAssignable<Options>({ fetch: true })

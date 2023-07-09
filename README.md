@@ -186,6 +186,13 @@ Current working directory of the child process.
 When using the [`local` alias](#nvexecaversionrange-command-args-options), this
 also starts looking for a Node.js version file from this directory.
 
+#### signal
+
+_Type_:
+[`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal)
+
+Cancels when the signal is aborted.
+
 ### Return value
 
 _Type_: `Promise<object>`

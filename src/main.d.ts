@@ -104,6 +104,11 @@ export type Options =
        * @default "."
        */
       cwd: GetNodeOptions['cwd']
+
+      /**
+       * Cancels when the signal is aborted.
+       */
+      signal?: GetNodeOptions['signal']
     }>
 
 /**
