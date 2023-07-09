@@ -66,7 +66,7 @@ const getExecaOptions = (nodePath, execaOptions) => ({
 // `signal` cancels downloading the Node.js binary, but not the command
 // execution. This allows `nve --parallel` to execute both failing and
 // successful commands. However, non-command related failures (like Node.js
-// binary donwload issue) aborts everything.
+// binary download issue) aborts everything.
 const startProcess = ({ command, args, execaOptions, dry }) => {
   if (dry) {
     return
