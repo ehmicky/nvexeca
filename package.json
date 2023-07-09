@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "execa": "^7.1.1",
-    "get-node": "^14.0.0",
+    "get-node": "^14.1.0",
     "global-cache-dir": "^5.0.0",
     "is-plain-obj": "^4.1.0",
     "path-exists": "^5.0.0",
