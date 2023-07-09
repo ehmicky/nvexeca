@@ -195,14 +195,15 @@ each(
   },
 )
 
-test('Can fire global binaries', async (t) => {
+// Serial to avoid "too many open files" on Windows
+test.serial('Can fire global binaries', async (t) => {
   const { childProcess } = await nvexeca(HELPER_VERSION, 'npm', ['--version'])
   const { stdout } = await childProcess
 
   t.not(stdout, '')
 })
 
-test('Can fire local binaries', async (t) => {
+test.serial('Can fire local binaries', async (t) => {
   const { childProcess } = await runWithoutPath({})
   const { stdout } = await childProcess
 
