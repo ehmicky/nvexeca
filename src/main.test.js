@@ -244,3 +244,11 @@ test.serial('Works with npm scripts', async (t) => {
   const { stdout: nveStdout } = await nveChildProcess
   t.is(nveStdout, `v${HELPER_VERSION}`)
 })
+
+test('Can abort the command', async (t) => {
+  await nvexeca(TEST_VERSION, 'node', { dry: true })
+  const { childProcess } = await nvexeca(TEST_VERSION, 'node', ['--version'], {
+    signal: AbortSignal.abort(),
+  })
+  await t.throwsAsync(childProcess, { name: 'AbortError' })
+})

@@ -1,8 +1,16 @@
+# 9.1.1
+
+## Bug fixes
+
+- Ensure the [`signal` option](https://github.com/sindresorhus/execa/#signal-1)
+  also cancels the command
+
 # 9.1.0
 
 ## Features
 
-- Add a [`signal` option](README.md#signal) to cancel
+- Make the [`signal` option](https://github.com/sindresorhus/execa/#signal-1)
+  also cancel downloading the Node.js binary
 
 # 9.0.0
 
