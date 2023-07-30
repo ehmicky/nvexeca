@@ -61,7 +61,7 @@
   },
   "devDependencies": {
     "@ehmicky/dev-tasks": "^2.0.91",
-    "@types/node": "^20.4.1",
+    "@types/node": "^20.4.8",
     "nyc": "^15.1.0",
     "semver": "^7.5.4",
     "test-each": "^6.0.1",
