@@ -54,7 +54,7 @@
     "lib": "src"
   },
   "dependencies": {
-    "execa": "^8.0.0",
+    "execa": "^8.0.1",
     "get-node": "^14.2.1",
     "global-cache-dir": "^5.0.0",
     "is-plain-obj": "^4.1.0",
