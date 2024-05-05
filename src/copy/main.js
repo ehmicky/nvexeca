@@ -5,9 +5,10 @@ import { getDistBinDir } from './output.js'
 import { getPath, addToPath } from './path.js'
 import { writeBinaries } from './write.js'
 
-// npm install global binaries on Unix with symlinks. But on Windows, it creates
-// a small `*.cmd` file (https://github.com/npm/cmd-shim) that just forwards to
-// `{executable} ...` where executable is guessed from the shabang (if any).
+// npm installs global binaries on Unix with symlinks. But on Windows, it
+// creates a small `*.cmd` file (https://github.com/npm/cmd-shim) that just
+// forwards to `{executable} ...` where executable is guessed from the shabang
+// (if any).
 // This is because Windows cannot execute shabang files otherwise.
 // It also does it with a Bash file and a `*.ps1` file (Powershell).
 // However the shim files prioritize the global binaries directory over the

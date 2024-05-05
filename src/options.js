@@ -21,7 +21,7 @@ export const getOpts = ({ versionRange, command, args, opts }) => {
     fetch: fetchOpt,
     mirror,
     arch,
-    signal: execaOptions.signal,
+    signal: execaOptions.cancelSignal,
     cwd: execaOptions.cwd,
   }
 

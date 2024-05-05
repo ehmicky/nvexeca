@@ -3,7 +3,7 @@ import { rm } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 
 import test from 'ava'
-import { execa, execaCommand } from 'execa'
+import { execa } from 'execa'
 import pathKey from 'path-key'
 import semver from 'semver'
 import { each } from 'test-each'
@@ -158,7 +158,7 @@ test.serial('Works with nyc as child', async (t) => {
 })
 
 test('Works with nyc as parent with node command', async (t) => {
-  const { stdout } = await execaCommand(`nyc --silent -- node ${DEEP_FILE}`)
+  const { stdout } = await execa('nyc', ['--silent', '--', 'node', DEEP_FILE])
 
   t.is(stdout, `v${HELPER_VERSION}`)
 })

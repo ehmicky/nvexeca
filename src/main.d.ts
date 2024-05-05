@@ -1,16 +1,16 @@
-import type { ExecaChildProcess, Options as ExecaOptions } from 'execa'
+import type { ResultPromise, Options as ExecaOptions } from 'execa'
 import type { Options as GetNodeOptions, SemverVersion } from 'get-node'
 
 export interface ProcessInfo {
   /**
    * [`childProcess` instance](https://nodejs.org/api/child_process.html#child_process_class_childprocess).
    * It is also a `Promise` resolving or rejecting with a
-   * [`childProcessResult`](https://github.com/sindresorhus/execa#childProcessResult).
+   * [`Result`](https://github.com/sindresorhus/execa/blob/main/docs/api.md#result).
    * The `Promise` should be awaited if you want to wait for the process to
    * complete.
    * This is `undefined` when the `dry` option is `true`.
    */
-  childProcess?: ExecaChildProcess
+  childProcess?: ResultPromise
 
   /**
    * Node.js version passed as input, such as `"v10"`.
@@ -34,17 +34,17 @@ export interface ProcessInfo {
   args: string[]
 
   /**
-   * [Options](https://github.com/sindresorhus/execa#options) that were passed
-   * to [Execa](https://github.com/sindresorhus/execa).
+   * [Options](https://github.com/sindresorhus/execa/blob/main/docs/api.md#options)
+   * that were passed to [Execa](https://github.com/sindresorhus/execa).
    */
   execaOptions: ExecaOptions
 }
 
 /**
  * All Execa options are available. Please refer to Execa for the list of
- * [possible options](https://github.com/sindresorhus/execa#options).
+ * [possible options](https://github.com/sindresorhus/execa/blob/main/docs/api.md#options).
  * The
- * [`preferLocal` option](https://github.com/sindresorhus/execa/blob/master/readme.md#preferlocal)
+ * [`preferLocal` option](https://github.com/sindresorhus/execa/blob/main/docs/api.md#optionspreferlocal)
  * is always `true`.
  */
 export type Options =

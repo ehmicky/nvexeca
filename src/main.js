@@ -55,11 +55,10 @@ const getCommand = (nodePath, command) =>
 // We do this instead of directly calling `node` so that:
 //  - child processes use the same Node.js version
 //  - binaries work, even on Windows
-// We use `execa` `execPath` for this.
-// This option requires `preferLocal: true`
+// We use `execa` `nodePath` for this.
 const getExecaOptions = (nodePath, execaOptions) => ({
   ...execaOptions,
-  execPath: nodePath,
+  nodePath,
   preferLocal: true,
 })
 

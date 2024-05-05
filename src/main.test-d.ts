@@ -50,8 +50,8 @@ expectAssignable<Options>({ mirror: 'https://example.com' })
 // @ts-expect-error
 await nvexeca('14', 'echo', { mirror: true })
 
-await nvexeca('14', 'echo', { signal: AbortSignal.abort() })
-expectAssignable<Options>({ signal: AbortSignal.abort() })
+await nvexeca('14', 'echo', { cancelSignal: AbortSignal.abort() })
+expectAssignable<Options>({ cancelSignal: AbortSignal.abort() })
 // @ts-expect-error
 await nvexeca('14', 'echo', { signal: 'signal' })
 
@@ -74,10 +74,10 @@ expectAssignable<Options>({ cwd: new URL('file://example.com') })
 // @ts-expect-error
 await nvexeca('14', 'echo', { cwd: true })
 
-await nvexeca('14', 'echo', { stripFinalNewline: true })
-expectAssignable<Options>({ stripFinalNewline: true })
+await nvexeca('14', 'echo', { ipc: true })
+expectAssignable<Options>({ ipc: true })
 // @ts-expect-error
-await nvexeca('14', 'echo', { stripFinalNewline: 'true' })
+await nvexeca('14', 'echo', { ipc: 'true' })
 
 const processInfo = await nvexeca('14', 'echo')
 expectType<ProcessInfo>(processInfo)
@@ -87,18 +87,18 @@ const {
   version,
   command,
   args,
-  execaOptions: { stripFinalNewline },
+  execaOptions: { ipc },
 } = processInfo
 
 expectAssignable<Stream | null | undefined>(childProcess?.stdout)
 expectAssignable<Stream | null | undefined>(childProcess?.all)
 const { isCanceled, exitCode } = await childProcess!
 expectType<boolean>(isCanceled)
-expectType<number>(exitCode)
+expectType<number | undefined>(exitCode)
 
 expectAssignable<string>(version)
 expectAssignable<string>(versionRange)
 expectAssignable<string>(command)
 expectAssignable<string[]>(args)
-expectAssignable<boolean | undefined>(stripFinalNewline)
-expectNotAssignable<string>(stripFinalNewline)
+expectAssignable<boolean | undefined>(ipc)
+expectNotAssignable<string>(ipc)

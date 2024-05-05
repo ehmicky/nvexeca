@@ -14,7 +14,7 @@ nvm + execa = nvexeca.
 [Execa](https://github.com/sindresorhus/execa) improves
 [child processes](https://nodejs.org/api/child_process.html) execution with a
 promise interface, cross-platform support, local binaries, interleaved output,
-[and more](https://github.com/sindresorhus/execa#why).
+[and more](https://github.com/sindresorhus/execa#features).
 
 nvexeca is a thin wrapper around Execa to run any file or command using any
 Node.js version.
@@ -133,10 +133,10 @@ Arguments to pass to the [`command`](#command).
 _Type_: `object?`
 
 All Execa options are available. Please refer to Execa for the list of
-[possible options](https://github.com/sindresorhus/execa#options).
+[possible options](https://github.com/sindresorhus/execa/blob/main/docs/api.md#options).
 
 The
-[`preferLocal` option](https://github.com/sindresorhus/execa/blob/master/readme.md#preferlocal)
+[`preferLocal` option](https://github.com/sindresorhus/execa/blob/main/docs/api.md#optionspreferlocal)
 is always `true`.
 
 The following options are also available.
@@ -218,11 +218,11 @@ const { exitCode, stdout, stderr } = await childProcess
 #### childProcess
 
 _Type_:
-[`ExecaChildProcess?`](https://github.com/sindresorhus/execa#execafile-arguments-options)
+[`ResultPromise?`](https://github.com/sindresorhus/execa/blob/main/docs/api.md#return-value)
 
 [`childProcess` instance](https://nodejs.org/api/child_process.html#child_process_class_childprocess).
 It is also a `Promise` resolving or rejecting with a
-[`childProcessResult`](https://github.com/sindresorhus/execa#childProcessResult).
+[`Result`](https://github.com/sindresorhus/execa/blob/main/docs/api.md#result).
 The `Promise` should be awaited if you want to wait for the process to complete.
 
 This is `undefined` when the [`dry`](#dry) option is `true`.
@@ -256,8 +256,8 @@ Arguments that were passed to the `command`.
 
 _Type_: `object`
 
-[Options](https://github.com/sindresorhus/execa#options) that were passed to
-[Execa](https://github.com/sindresorhus/execa).
+[Options](https://github.com/sindresorhus/execa/blob/main/docs/api.md#options)
+that were passed to [Execa](https://github.com/sindresorhus/execa).
 
 ## Initial download
 
