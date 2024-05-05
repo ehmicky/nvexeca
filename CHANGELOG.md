@@ -1,3 +1,10 @@
+# 11.0.0
+
+## Breaking changes
+
+- Upgrade [Execa](https://github.com/sindresorhus/execa) to
+  [`9.0.0`](https://github.com/sindresorhus/execa/releases/tag/v9.0.0)
+
 # 10.0.0
 
 ## Breaking changes
