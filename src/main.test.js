@@ -262,3 +262,16 @@ test.serial('Can abort the command', async (t) => {
   })
   await t.throwsAsync(childProcess, { code: 'ABORT_ERR' })
 })
+
+each([undefined, {}], ({ title }, env) => {
+  test(`Can use extendEnv: false and env: ${title}`, async (t) => {
+    const { version } = await nvexeca(
+      `v${TEST_VERSION}`,
+      'node',
+      ['--version'],
+      { extendEnv: false, env },
+    )
+
+    t.is(version, TEST_VERSION)
+  })
+})
