@@ -1,5 +1,6 @@
 import { execa } from 'execa'
 import getNode from 'get-node'
+import { npmRunPathEnv } from 'npm-run-path'
 
 import { copyBinaries } from './copy/main.js'
 import { getOpts } from './options.js'
@@ -58,8 +59,21 @@ const getCommand = (nodePath, command) =>
 // We use `execa` `nodePath` for this.
 const getExecaOptions = (nodePath, execaOptions) => ({
   ...execaOptions,
+  ...getEnv(nodePath, execaOptions),
   nodePath,
   preferLocal: true,
+})
+
+// `nodePath` requires `node: true`, so we emulate it instead.
+// However, we still set `nodePath` it as an Execa option in case `node: true`
+// is used.
+const getEnv = (nodePath, { extendEnv = true, env }) => ({
+  extendEnv: extendEnv || env === undefined,
+  env: npmRunPathEnv({
+    env: env ?? {},
+    execPath: nodePath,
+    preferLocal: false,
+  }),
 })
 
 // `signal` cancels downloading the Node.js binary, but not the command
