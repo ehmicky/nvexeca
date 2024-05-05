@@ -27,9 +27,12 @@ const getShellContent = (srcBinDir, content) => {
   return content.replaceAll(SHELL_REGEXP, `${srcBinDirA}$1`)
 }
 
-// `CLI_BASEDIR|NPM_PREFIX` is used in npm|npx shell binaries, $basedir in other
-// shell binaries and in Powershell
-const SHELL_REGEXP = /(\$basedir|\$CLI_BASEDIR|\$NPM_PREFIX)(\/node_modules)/gu
+// `CLI_BASEDIR|NPM_PREFIX` is used in npm|npx shell binaries
+// $basedir in other shell binaries and in old Powershell
+// "$nodedir and "$npmprefix in old Powershell
+// $PSScriptRoot in new Powershell
+const SHELL_REGEXP =
+  /(\$basedir|\$CLI_BASEDIR|\$NPM_PREFIX|\$PSScriptRoot|"\$nodedir|"\$npmprefix)(\/node_modules)/gu
 
 const CONTENTS = {
   cmd: getCmdContent,

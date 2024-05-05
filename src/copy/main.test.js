@@ -26,22 +26,22 @@ if (platform !== 'win32') {
 // We need to run tests serially because of some ETXTBUSY errors thrown
 // otherwise
 if (platform === 'win32') {
-  each(['10.16.0', '13.1.0'], ({ title }, nodeVersion) => {
+  each(['10.16.0', '13.1.0', '18.18.0', '22.1.0'], ({ title }, nodeVersion) => {
     const fixtureDir = join(FIXTURES_DIR, nodeVersion)
 
-    test(`Global binaries | ${title}`, async (t) => {
+    test.serial(`Global binaries | ${title}`, async (t) => {
       await runPrint(t, [fixtureDir])
     })
 
-    test(`extendEnv: false | ${title}`, async (t) => {
+    test.serial(`extendEnv: false | ${title}`, async (t) => {
       await runPrint(t, [fixtureDir], { extendEnv: false })
     })
 
-    test(`Non-existing directory in PATH | ${title}`, async (t) => {
+    test.serial(`Non-existing directory in PATH | ${title}`, async (t) => {
       await runPrint(t, [fixtureDir, INVALID_DIR])
     })
 
-    test(`Recursively | ${title}`, async (t) => {
+    test.serial(`Recursively | ${title}`, async (t) => {
       await run({
         t,
         pathParts: [fixtureDir],
@@ -51,24 +51,24 @@ if (platform === 'win32') {
       })
     })
 
-    test(`Binary twice in PATH | ${title}`, async (t) => {
+    test.serial(`Binary twice in PATH | ${title}`, async (t) => {
       await runPrint(t, [fixtureDir, fixtureDir])
     })
 
-    test(`*.cmd not a npm binary | ${title}`, async (t) => {
+    test.serial(`*.cmd not a npm binary | ${title}`, async (t) => {
       await runPrint(t, [fixtureDir, join(FIXTURES_DIR, 'not_npm')])
     })
 
-    test(`Not node executable | ${title}`, async (t) => {
+    test.serial(`Not node executable | ${title}`, async (t) => {
       await runPrint(t, [fixtureDir, join(FIXTURES_DIR, 'not_node')])
     })
 
-    test(`Sibling is a directory | ${title}`, async (t) => {
+    test.serial(`Sibling is a directory | ${title}`, async (t) => {
       await runPrint(t, [fixtureDir, join(FIXTURES_DIR, 'sibling_dir')])
     })
   })
 
-  test('PATH: undefined', async (t) => {
+  test.serial('PATH: undefined', async (t) => {
     await runThrows(t, { env: { [PATH]: undefined } })
   })
 }
