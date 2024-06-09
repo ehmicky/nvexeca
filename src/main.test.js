@@ -260,7 +260,8 @@ test.serial('Can abort the command', async (t) => {
   const { childProcess } = await nvexeca(TEST_VERSION, 'node', ['--version'], {
     cancelSignal: AbortSignal.abort(),
   })
-  await t.throwsAsync(childProcess, { code: 'ABORT_ERR' })
+  const { isCanceled } = await t.throwsAsync(childProcess)
+  t.true(isCanceled)
 })
 
 each([undefined, {}], ({ title }, env) => {
