@@ -7,6 +7,7 @@ import { execa } from 'execa'
 import pathKey from 'path-key'
 import semver from 'semver'
 import { each } from 'test-each'
+import { tmpName } from 'tmp-promise'
 
 import { run } from './helpers/copy.test.js'
 import {
@@ -145,9 +146,10 @@ each(
   },
 )
 
-test.serial('Works with nyc as child', async (t) => {
+test('Works with nyc as child', async (t) => {
   const { childProcess } = await nvexeca(HELPER_VERSION, 'nyc', [
     '--silent',
+    `--temp-dir=${await tmpName()}`,
     '--',
     'node',
     '--version',
@@ -158,7 +160,13 @@ test.serial('Works with nyc as child', async (t) => {
 })
 
 test('Works with nyc as parent with node command', async (t) => {
-  const { stdout } = await execa('nyc', ['--silent', '--', 'node', DEEP_FILE])
+  const { stdout } = await execa('nyc', [
+    '--silent',
+    `--temp-dir=${await tmpName()}`,
+    '--',
+    'node',
+    DEEP_FILE,
+  ])
 
   t.is(stdout, `v${HELPER_VERSION}`)
 })

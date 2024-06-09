@@ -69,6 +69,7 @@
     "nyc": "^17.0.0",
     "semver": "^7.5.4",
     "test-each": "^7.0.0",
+    "tmp-promise": "^3.0.3",
     "yarn": "^1.22.19"
   },
   "engines": {
