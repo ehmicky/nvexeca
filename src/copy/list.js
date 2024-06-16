@@ -1,6 +1,7 @@
 import { readdir, stat, readFile } from 'node:fs/promises'
 import { delimiter, normalize } from 'node:path'
 
+import pMap from 'p-map'
 import { isDirectory } from 'path-type'
 
 import { getContent } from './content.js'
@@ -10,7 +11,7 @@ import { isOutputDir } from './output.js'
 // Look inside each directory in `PATH` to find any npm global binary executed
 // with Node.
 export const listSrcPaths = async (pathValue) => {
-  const srcBinDirs = pathValue.split(delimiter)
+  const srcBinDirs = [...new Set(pathValue.split(delimiter))]
   const srcPaths = await Promise.all(srcBinDirs.map(getSrcPaths))
   return srcPaths.flat().filter(hasPriority)
 }
@@ -27,13 +28,16 @@ const getSrcPaths = async (srcBinDir) => {
   }
 
   const filenames = await readdir(srcBinDirA)
-  const srcPaths = await Promise.all(
-    filenames.map((filename) =>
-      getSrcPath({ srcBinDir: srcBinDirA, filenames, filename }),
-    ),
+  const srcPaths = await pMap(
+    filenames,
+    (filename) => getSrcPath({ srcBinDir: srcBinDirA, filenames, filename }),
+    { concurrency: FILE_CONCURRENCY },
   )
   return srcPaths.flat()
 }
+
+// Avoid EMFILE errors due to too many open files at once
+const FILE_CONCURRENCY = 100
 
 // We are looking for *.cmd files that have a sibling Bash file. Those are
 // most likely to be npm global binaries.
