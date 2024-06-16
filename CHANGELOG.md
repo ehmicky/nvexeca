@@ -1,3 +1,10 @@
+# 11.0.1
+
+## Bug fixes
+
+- Fix `EMFILE` errors thrown on Windows when `nvexeca()` is called multiple
+  times at once.
+
 # 11.0.0
 
 ## Breaking changes
