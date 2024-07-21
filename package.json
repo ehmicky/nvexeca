@@ -62,7 +62,7 @@
     "p-map": "^7.0.2",
     "path-exists": "^5.0.0",
     "path-key": "^4.0.0",
-    "path-type": "^5.0.0"
+    "path-type": "^6.0.0"
   },
   "devDependencies": {
     "@ehmicky/dev-tasks": "^3.0.5",
