@@ -90,7 +90,7 @@ const isNodeBinary = async (srcBinDir, filenames, bashFilename) => {
 
 // This works with both normal shim files and `npm`/`npx` which use slightly
 // different shim files. We support `npm`/`npx` >= 8.15.0, `bin-links` >= 4.0.1,
-// `cmd-shim` >=6.0.0 since this is shipped with Node 18.18.0 (our minimally
+// `cmd-shim` >=6.0.0 since this is shipped with Node 18.20.0 (our minimally
 // supported Node version)
 const NODE_DETECT_REGEXP = /\[ -x "(\$basedir\/node|\$NODE_EXE)" \]/u
 
