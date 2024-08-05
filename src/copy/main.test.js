@@ -26,7 +26,7 @@ if (platform !== 'win32') {
 // We need to run tests serially because of some ETXTBUSY errors thrown
 // otherwise
 if (platform === 'win32') {
-  each(['10.16.0', '13.1.0', '18.20.0', '22.1.0'], ({ title }, nodeVersion) => {
+  each(['10.16.0', '13.1.0', '18.18.0', '22.1.0'], ({ title }, nodeVersion) => {
     const fixtureDir = join(FIXTURES_DIR, nodeVersion)
 
     test.serial(`Global binaries | ${title}`, async (t) => {
