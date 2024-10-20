@@ -69,7 +69,6 @@
     "@types/node": "^22.8.1",
     "semver": "^7.6.3",
     "test-each": "^7.0.0",
-    "tmp-promise": "^3.0.3",
     "yarn": "^1.22.22"
   },
   "engines": {

@@ -7,7 +7,6 @@ import { execa } from 'execa'
 import pathKey from 'path-key'
 import semver from 'semver'
 import { each } from 'test-each'
-import { tmpName } from 'tmp-promise'
 
 import { run } from './helpers/copy.test.js'
 import {
