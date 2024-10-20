@@ -146,31 +146,6 @@ each(
   },
 )
 
-test('Works with nyc as child', async (t) => {
-  const { childProcess } = await nvexeca(HELPER_VERSION, 'nyc', [
-    '--silent',
-    `--temp-dir=${await tmpName()}`,
-    '--',
-    'node',
-    '--version',
-  ])
-  const { stdout } = await childProcess
-
-  t.is(stdout, `v${HELPER_VERSION}`)
-})
-
-test('Works with nyc as parent with node command', async (t) => {
-  const { stdout } = await execa('nyc', [
-    '--silent',
-    `--temp-dir=${await tmpName()}`,
-    '--',
-    'node',
-    DEEP_FILE,
-  ])
-
-  t.is(stdout, `v${HELPER_VERSION}`)
-})
-
 test('Does not change process.execPath', async (t) => {
   // eslint-disable-next-line no-restricted-globals, n/prefer-global/process
   const { execPath } = process
