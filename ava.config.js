@@ -6,5 +6,4 @@ export default {
   // CI machines have lower limits for parallel network requests, and sometimes
   // fail, especially macOS on GitHub actions
   serial: isCI,
-  workerThreads: false,
 }
