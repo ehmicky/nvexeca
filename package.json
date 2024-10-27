@@ -65,7 +65,7 @@
     "path-type": "^6.0.0"
   },
   "devDependencies": {
-    "@ehmicky/dev-tasks": "^3.0.17",
+    "@ehmicky/dev-tasks": "^3.0.18",
     "@types/node": "^22.8.1",
     "is-ci": "^3.0.1",
     "semver": "^7.6.3",
