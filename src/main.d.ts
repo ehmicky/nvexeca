@@ -1,4 +1,4 @@
-import type { ResultPromise, Options as ExecaOptions } from 'execa'
+import type { Options as ExecaOptions, ResultPromise } from 'execa'
 import type { Options as GetNodeOptions, SemverVersion } from 'get-node'
 
 export interface ProcessInfo {

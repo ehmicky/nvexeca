@@ -1,4 +1,4 @@
-import { readdir, stat, readFile } from 'node:fs/promises'
+import { readdir, readFile, stat } from 'node:fs/promises'
 import { delimiter, normalize } from 'node:path'
 
 import pMap from 'p-map'

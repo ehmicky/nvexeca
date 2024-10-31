@@ -6,7 +6,7 @@ import test from 'ava'
 import pathKey from 'path-key'
 import { each } from 'test-each'
 
-import { runPrint, run, runThrows } from '../helpers/copy.test.js'
+import { run, runPrint, runThrows } from '../helpers/copy.test.js'
 import { HELPER_VERSION } from '../helpers/versions.test.js'
 
 const FORK_FILE = fileURLToPath(

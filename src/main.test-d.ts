@@ -1,6 +1,6 @@
 import type { Stream } from 'node:stream'
 
-import { expectType, expectAssignable, expectNotAssignable } from 'tsd'
+import { expectAssignable, expectNotAssignable, expectType } from 'tsd'
 
 import nvexeca, { type Options, type ProcessInfo } from 'nvexeca'
 

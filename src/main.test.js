@@ -10,9 +10,9 @@ import { each } from 'test-each'
 
 import { run } from './helpers/copy.test.js'
 import {
-  TEST_VERSION,
   ALIAS_VERSION,
   HELPER_VERSION,
+  TEST_VERSION,
 } from './helpers/versions.test.js'
 
 // eslint-disable-next-line import/max-dependencies
