@@ -67,7 +67,7 @@
   "devDependencies": {
     "@ehmicky/dev-tasks": "^3.0.25",
     "@ehmicky/eslint-config": "^20.0.18",
-    "@ehmicky/prettier-config": "^1.0.3",
+    "@ehmicky/prettier-config": "^1.0.4",
     "@types/node": "^22.8.1",
     "is-ci": "^3.0.1",
     "semver": "^7.6.3",
