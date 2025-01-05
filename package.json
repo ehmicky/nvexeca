@@ -59,7 +59,7 @@
     "global-cache-dir": "^6.0.0",
     "is-plain-obj": "^4.1.0",
     "npm-run-path": "^6.0.0",
-    "p-map": "^7.0.2",
+    "p-map": "^7.0.3",
     "path-exists": "^5.0.0",
     "path-key": "^4.0.0",
     "path-type": "^6.0.0"
