@@ -120,6 +120,7 @@ export type Options =
  * console.log(stdout) // v8.16.2
  * ```
  */
+// eslint-disable-next-line @typescript-eslint/max-params
 export default function nvexeca(
   /**
    * This can be:
