@@ -65,7 +65,7 @@
     "path-type": "^6.0.0"
   },
   "devDependencies": {
-    "@ehmicky/dev-tasks": "^3.0.28",
+    "@ehmicky/dev-tasks": "^3.0.29",
     "@ehmicky/eslint-config": "^20.0.23",
     "@ehmicky/prettier-config": "^1.0.4",
     "@types/node": "^22.12.0",
