@@ -68,7 +68,7 @@
     "@ehmicky/dev-tasks": "^3.0.33",
     "@ehmicky/eslint-config": "^20.0.30",
     "@ehmicky/prettier-config": "^1.0.5",
-    "@types/node": "^22.13.11",
+    "@types/node": "^22.13.14",
     "is-ci": "^4.1.0",
     "semver": "^7.7.1",
     "test-each": "^7.0.0",
