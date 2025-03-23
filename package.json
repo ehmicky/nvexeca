@@ -71,7 +71,7 @@
     "@types/node": "^22.13.14",
     "is-ci": "^4.1.0",
     "semver": "^7.7.1",
-    "test-each": "^7.0.0",
+    "test-each": "^7.0.1",
     "yarn": "^1.22.22"
   },
   "engines": {
