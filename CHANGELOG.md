@@ -1,3 +1,9 @@
+# 11.0.2
+
+## Security fix
+
+- Fix vulnerability in `tar-fs` dependency by upgrading it
+
 # 11.0.1
 
 ## Bug fixes
