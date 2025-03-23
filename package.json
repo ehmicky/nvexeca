@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "execa": "^9.5.2",
-    "get-node": "^15.0.1",
+    "get-node": "^15.0.2",
     "global-cache-dir": "^6.0.0",
     "is-plain-obj": "^4.1.0",
     "npm-run-path": "^6.0.0",
