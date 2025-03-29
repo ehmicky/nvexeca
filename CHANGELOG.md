@@ -1,3 +1,9 @@
+# 11.0.3
+
+## Documentation
+
+- Improve documentation in `README.md`
+
 # 11.0.2
 
 ## Security fix
