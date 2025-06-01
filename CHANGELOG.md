@@ -1,3 +1,9 @@
+# 11.0.4
+
+## Dependencies
+
+- Upgrade `tar-fs` dependency
+
 # 11.0.3
 
 ## Documentation
